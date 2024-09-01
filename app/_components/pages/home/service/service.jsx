@@ -18,9 +18,17 @@ export default function Service() {
           <li className={styles.item}>
             <div className={styles.head}>
               <span className={`${openSans.className} ${styles.num}`}>SERVICE 01</span>
-              <span className={styles.name}>Jam Factory（ジャムファクトリー）</span>
+              <span className={styles.name}>
+                Jam Factory
+                <br className={styles.brsp} />
+                （ジャムファクトリー）
+              </span>
             </div>
-            <p className={styles.subTitle}>サブスクリプション型ホームページ制作サービス</p>
+            <p className={styles.subTitle}>
+              サブスクリプション型
+              <br className={styles.brsp} />
+              ホームページ制作サービス
+            </p>
             <div className={styles.thumb}>
               <Image src="/images/works-01.png" width={1000} height={900} alt="" />
             </div>
@@ -43,7 +51,11 @@ export default function Service() {
           <li className={styles.item}>
             <div className={styles.head}>
               <span className={`${openSans.className} ${styles.num}`}>SERVICE 02</span>
-              <span className={styles.name}>CodeHive（コードハイブ）</span>
+              <span className={styles.name}>
+                CodeHive
+                <br className={styles.brsp} />
+                （コードハイブ）
+              </span>
             </div>
             <p className={styles.subTitle}>高品質なコーディング代行サービス</p>
             <div className={styles.thumb}>

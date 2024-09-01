@@ -50,7 +50,7 @@ export default function About() {
 
           <div className={styles.profile}>
             <h3 className={openSans.className}>
-              <SectionTitle en="PROFILE" jp="代表者プロフィール" />
+              <SectionTitle en="PROFILE" jp="代表プロフィール" />
             </h3>
             <div className={styles.prof}>
               <div className={styles.nameWrap}>

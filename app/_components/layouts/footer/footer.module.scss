@@ -12,6 +12,10 @@
 .content {
   display: flex;
   justify-content: space-between;
+
+  @include sp {
+    flex-wrap: wrap;
+  }
 }
 
 .infoWrap {
@@ -34,6 +38,7 @@
 
 .list {
   display: flex;
+  flex-wrap: wrap;
   gap: 3.2rem;
 }
 

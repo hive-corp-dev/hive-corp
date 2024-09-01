@@ -33,6 +33,10 @@ body {
   -ms-text-size-adjust: 100%;
   -o-font-smoothing: antialiased;
   -o-text-size-adjust: 100%;
+
+  @include tab {
+    background-size: calc(100% / 4) 100%;
+  }
 }
 
 a {

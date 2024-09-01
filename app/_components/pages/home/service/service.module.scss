@@ -6,6 +6,14 @@
 
   background-image: linear-gradient(to right, #1d2328 1px, /* 線の幅 */ #0d151e 1px);
   background-size: calc(100% / 6) 100%;
+
+  @include tab {
+    background-size: calc(100% / 4) 100%;
+  }
+
+  @include sp {
+    padding: 8rem 0;
+  }
 }
 
 .title {
@@ -24,6 +32,10 @@
 
   &:not(:first-child) {
     margin-top: 12rem;
+
+    @include sp {
+      margin-top: 8rem;
+    }
   }
 }
 
@@ -34,20 +46,31 @@
 }
 
 .num {
-  font-size: 1.6rem;
-  font-weight: bold;
+  font-size: 1.2rem;
+  font-weight: 400;
+  padding: 0.6rem 1.6rem;
   letter-spacing: 0.1em;
-  border-top: 0.1rem solid $c-white;
-  border-bottom: 0.1rem solid $c-white;
-  padding: 1.4rem 1.2rem;
-  width: 100%;
+  // background-color: rgba($c-white, 0.2);
   text-align: center;
+  color: $c-black;
+  color: $c-white;
+  border: 0.1rem solid $c-white;
+
+  @include sp {
+    font-size: 1rem;
+    padding: 0.4rem 1.2rem;
+  }
 }
 
 .name {
   font-size: 2.8rem;
   font-weight: bold;
-  margin-top: 6.4rem;
+  margin-top: 2.4rem;
+
+  @include sp {
+    font-size: 2.2rem;
+    text-align: center;
+  }
 }
 
 .subTitle {
@@ -55,11 +78,19 @@
   text-align: center;
   letter-spacing: 0.1em;
   margin-top: 1.2rem;
+
+  @include sp {
+    font-size: 1.4rem;
+  }
 }
 
 .thumb {
   width: 70%;
   margin: 1.2rem auto 0;
+
+  @include sp {
+    width: 100%;
+  }
 }
 
 .exp {
@@ -67,6 +98,11 @@
   line-height: 2.25;
   margin-top: 3.2rem;
   padding: 0 16%;
+
+  @include sp {
+    padding: 0;
+    font-size: 1.4rem;
+  }
 }
 
 .btnWrap {
@@ -101,5 +137,13 @@
       background-color: $c-white;
       color: #0d151e;
     }
+  }
+}
+
+.brsp {
+  display: none;
+
+  @include sp {
+    display: block;
   }
 }

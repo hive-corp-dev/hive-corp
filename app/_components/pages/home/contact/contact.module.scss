@@ -2,6 +2,10 @@
 
 .section {
   padding: 16rem 0;
+
+  @include sp {
+    padding: 8rem 0;
+  }
 }
 
 .title {
@@ -19,4 +23,9 @@
   text-align: center;
   line-height: 2;
   margin-top: 6.4rem;
+
+  @include sp {
+    font-size: 1.4rem;
+    margin-top: 3.2rem;
+  }
 }

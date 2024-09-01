@@ -4,6 +4,14 @@
   padding: 16rem 0;
   background-image: linear-gradient(to right, $c-white 1px, /* 線の幅 */ #f8f8f8 1px);
   background-size: calc(100% / 6) 100%;
+
+  @include tab {
+    background-size: calc(100% / 4) 100%;
+  }
+
+  @include sp {
+    padding: 8rem 0;
+  }
 }
 
 .title {
@@ -12,29 +20,27 @@
   flex-direction: column;
 }
 
-.en {
-  font-weight: 400;
-  font-size: 1.6rem;
-  letter-spacing: 0.1em;
-}
-
-.jp {
-  font-size: 3.2rem;
-  font-weight: bold;
-}
-
 .box {
   // background-color: #f8f8f8;
   background-color: $c-white;
   padding: 8rem;
   margin-top: 6.4rem;
+
+  @include tab {
+    padding: 4rem;
+  }
+
+  @include sp {
+    padding: 0 2.4rem 2.4rem;
+    margin-top: 3.2rem;
+  }
 }
 
 .list {
   // max-width: 80rem;
   width: 100%;
   margin: 0 auto;
-  border-top: 0.1rem solid #e8e8e8;
+  // border-top: 0.1rem solid #e8e8e8;
 }
 
 .item {
@@ -43,18 +49,32 @@
   border-bottom: 0.1rem solid #e8e8e8;
   line-height: 2;
 
+  @include sp {
+    flex-wrap: wrap;
+    font-size: 1.5rem;
+  }
+
   dt {
     width: 24rem;
     font-weight: bold;
     flex-shrink: 0;
+
+    @include sp {
+      width: 100%;
+    }
   }
 
   dd {
     font-weight: 500;
 
+    @include sp {
+      width: 100%;
+    }
+
     ul {
-      display: flex;
-      flex-wrap: wrap;
+      li {
+        display: inline;
+      }
     }
   }
 }
@@ -63,6 +83,15 @@
   background-color: #fafafa;
   padding: 8rem;
   margin-top: 6.4rem;
+
+  @include tab {
+    padding: 4rem;
+  }
+
+  @include sp {
+    margin-top: 2.4rem;
+    padding: 2.4rem;
+  }
 
   h3 {
     display: flex;
@@ -73,10 +102,18 @@
       &:nth-child(1) {
         font-weight: 400;
         font-size: 1.6rem;
+
+        @include sp {
+          font-size: 1.2rem;
+        }
       }
 
       &:nth-child(2) {
         font-size: 3.2rem;
+
+        @include sp {
+          font-size: 2rem;
+        }
       }
     }
   }
@@ -84,6 +121,14 @@
   .nameWrap {
     flex-shrink: 0;
     width: 20rem;
+
+    @include tab {
+      width: 100%;
+      text-align: center;
+    }
+
+    @include sp {
+    }
   }
 
   .name {
@@ -92,12 +137,21 @@
     line-height: 1;
     letter-spacing: 0.1em;
     padding-top: 0.6rem;
+
+    @include sp {
+      font-size: 1.8rem;
+    }
   }
 
   .enname {
     font-size: 1.4rem;
     letter-spacing: 0.12em;
     margin-top: 0.6rem;
+
+    @include sp {
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+    }
   }
 }
 
@@ -105,11 +159,25 @@
   margin-top: 4rem;
   display: flex;
   gap: 4rem;
+
+  @include tab {
+    flex-wrap: wrap;
+    gap: 2.4rem;
+  }
+
+  @include sp {
+    gap: 1.2rem;
+    margin-top: 2.4rem;
+  }
 }
 
 .desc {
   line-height: 2;
   font-size: 1.5rem;
+
+  @include sp {
+    font-size: 1.3rem;
+  }
 
   p {
     &:not(:first-child) {

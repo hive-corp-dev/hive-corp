@@ -6,6 +6,7 @@ import styles from "./header.module.scss";
 import { HeaderContext } from "@/app/_context/header-context";
 import { openSans } from "@/app/_utils/fonts";
 import { useContext } from "react";
+import Image from "next/image";
 
 export default function Header() {
   const { headerIsWhite } = useContext(HeaderContext);
@@ -15,6 +16,7 @@ export default function Header() {
       <Container>
         <div className={styles.content}>
           <Link href="/" className={`${styles.logo} ${openSans.className}`}>
+            <Image src="/images/logo-07.svg" width={80} height={80} alt="logo" />
             HIVE
           </Link>
           <nav className={styles.nav}>

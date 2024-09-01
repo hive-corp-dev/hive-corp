@@ -63,26 +63,9 @@
     font-weight: 500;
     transition: all 0.3s;
 
-    &::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 1rem;
-      width: 100%;
-      height: 0.2rem;
-      background-color: $c-black;
-      transform: scaleX(0);
-      transform-origin: left center;
-      transition: all 0.3s;
-    }
-
     @include hover {
       &:hover {
-        color: $c-black;
-
-        &::after {
-          transform: scaleX(1);
-        }
+        color: $c-link;
       }
     }
   }

@@ -15,22 +15,47 @@ export default function Business() {
         <div className={styles.content}>
           <ul className={styles.list}>
             <li className={styles.item}>
-              <Image src="/images/service-01.png" width={1200} height={1200} alt="" />
+              <div className={styles.thumb}>
+                <Image src="/images/service-01.png" width={1200} height={1200} alt="" />
+              </div>
               <div className={styles.text}>
                 <h3>ホームページ制作</h3>
                 <p>
-                  お客様のビジネスに合わせたデザインを提案し、
-                  ホームページを制作いたします。デザインだけでなく、SEO対策も行い、
-                  集客につながるホームページを制作いたします。
+                  顧客のニーズに合わせて、企業やブランドの魅力を最大限に引き出すホームページを制作します。デザイン性と機能性を両立させ、ユーザーが使いやすく、情報にアクセスしやすい構造を重視。SEO対策を施したコンテンツにより、検索エンジンでの上位表示を目指し、集客効果を最大化します。
                 </p>
               </div>
             </li>
             <li className={styles.item}>
-              <Image src="/images/service-02.png" width={1200} height={1200} alt="" />
+              <div className={styles.thumb}>
+                <Image src="/images/service-02.png" width={1200} height={1200} alt="" />
+              </div>
               <div className={styles.text}>
-                <h3>SNS運用代行</h3>
+                <h3>MEO対策</h3>
                 <p>
-                  SNSを活用した集客やファン作りをサポートいたします。お客様のビジネスに合わせたSNS戦略を提案し、運用代行を行います。SNSを活用した集客やファン作りをサポートいたします。お客様のビジネスに合わせたSNS戦略を提案し、運用代行を行います。
+                  地域に根ざした集客戦略として、Googleマップでの上位表示を目指すMEO（Map Engine
+                  Optimization）対策を実施します。店舗情報の最適化や、顧客レビューの管理、ローカルSEOの施策で、近隣のユーザーに効率的にリーチし、集客力を強化します。
+                </p>
+              </div>
+            </li>
+            <li className={styles.item}>
+              <div className={styles.thumb}>
+                <Image src="/images/service-ig.png" width={1200} height={1200} alt="" />
+              </div>
+              <div className={styles.text}>
+                <h3>Instagram運用代行</h3>
+                <p>
+                  Instagramを活用して、ターゲットに合わせた投稿内容の企画から、フォロワーの増加やエンゲージメント向上を図ります。写真や動画の制作、ハッシュタグ戦略、広告運用などの多角的なアプローチでブランド価値を高め、顧客の獲得を支援します。
+                </p>
+              </div>
+            </li>
+            <li className={styles.item}>
+              <div className={styles.thumb}>
+                <Image src="/images/service-line.png" width={1200} height={1200} alt="" />
+              </div>
+              <div className={styles.text}>
+                <h3>LINE公式構築代行</h3>
+                <p>
+                  LINE公式アカウントの開設から効果的な運用までをトータルサポートします。メッセージ配信の最適化や、自動応答システムの設定、クーポン配布のサポートにより、顧客との接点を強化し、リピーターの増加を目指します。カスタマイズされた運用プランで、ビジネス目標達成に貢献します。
                 </p>
               </div>
             </li>

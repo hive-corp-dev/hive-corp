@@ -16,6 +16,8 @@ export default function Mv() {
             <span>Web制作会社です</span>
           </h1>
 
+          <Image className={styles.img} src="/images/mv-neww.png" width={1200} height={1200} alt="" />
+
           <p className={styles.text}>
             Webサイトを作るだけでなく、成果を出すための
             <br />
@@ -32,8 +34,6 @@ export default function Mv() {
               CONTACT
             </Link>
           </div>
-
-          <Image className={styles.img} src="/images/mv-neww.png" width={1200} height={1200} alt="" />
         </div>
       </Container>
     </section>

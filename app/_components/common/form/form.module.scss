@@ -29,6 +29,10 @@
 .row {
   display: flex;
 
+  @include sp {
+    flex-wrap: wrap;
+  }
+
   &.isBtn {
     justify-content: center;
     max-width: 40rem;
@@ -46,7 +50,9 @@
 
   @include sp {
     min-width: auto;
+    width: 100%;
     font-size: 1.5rem;
+    padding: 0;
   }
 
   &.isRequired {
@@ -59,6 +65,10 @@
 .control {
   flex-grow: 1;
   font-weight: 500;
+
+  @include sp {
+    margin-top: 0.8rem;
+  }
 
   &.isSelect {
     position: relative;
@@ -115,8 +125,6 @@
   transition: all 0.3s;
 
   @include sp {
-    width: 100%;
-    max-width: 40rem;
   }
 
   @include hover {
