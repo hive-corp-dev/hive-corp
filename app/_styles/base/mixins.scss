@@ -1,0 +1,94 @@
+@use "sass:math";
+
+// breakpoints
+
+$bp-pc-large: 1441px;
+$bp-hamburger: 1180px;
+$bp-tab: 1100px;
+$bp-sp: 768px;
+$bp-sp-s: 550px;
+
+@mixin pc-l {
+  @media (min-width: ($bp-pc-large)) {
+    @content;
+  }
+}
+
+@mixin hamburger {
+  @media (max-width: ($bp-hamburger)) {
+    @content;
+  }
+}
+
+@mixin tab {
+  @media (max-width: ($bp-tab)) {
+    @content;
+  }
+}
+
+@mixin sp {
+  @media (max-width: ($bp-sp)) {
+    @content;
+  }
+}
+
+@mixin sp-s {
+  @media (max-width: ($bp-sp-s)) {
+    @content;
+  }
+}
+
+// hover
+
+@mixin hover {
+  @media (hover: hover) {
+    @content;
+  }
+}
+
+@function calcHexWidth($value) {
+  // √3/2を計算して、小数点以下を切り上げる
+  @return $value * (math.sqrt(3) / 2);
+}
+
+@mixin outputHexWidth($value) {
+  width: calcHexWidth($value);
+}
+
+%btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $c-black;
+  border: 0.1rem solid $c-black;
+  letter-spacing: 0.1em;
+  color: $c-white;
+  font-weight: 400;
+  transition: all 0.3s;
+
+  @include hover {
+    &:hover {
+      background-color: $c-white;
+      color: $c-black;
+    }
+  }
+}
+
+%btn-white {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $c-white;
+  border: 0.1rem solid $c-black;
+  letter-spacing: 0.1em;
+  color: $c-black;
+  font-weight: 400;
+  transition: all 0.3s;
+
+  @include hover {
+    &:hover {
+      background-color: $c-black;
+      color: $c-white;
+    }
+  }
+}

@@ -1,0 +1,119 @@
+@import "@sass-utils";
+
+.section {
+  padding: 16rem 0;
+  background-image: linear-gradient(to right, $c-white 1px, /* 線の幅 */ #f8f8f8 1px);
+  background-size: calc(100% / 6) 100%;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.en {
+  font-weight: 400;
+  font-size: 1.6rem;
+  letter-spacing: 0.1em;
+}
+
+.jp {
+  font-size: 3.2rem;
+  font-weight: bold;
+}
+
+.box {
+  // background-color: #f8f8f8;
+  background-color: $c-white;
+  padding: 8rem;
+  margin-top: 6.4rem;
+}
+
+.list {
+  // max-width: 80rem;
+  width: 100%;
+  margin: 0 auto;
+  border-top: 0.1rem solid #e8e8e8;
+}
+
+.item {
+  padding: 2.4rem 0;
+  display: flex;
+  border-bottom: 0.1rem solid #e8e8e8;
+  line-height: 2;
+
+  dt {
+    width: 24rem;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  dd {
+    font-weight: 500;
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+.profile {
+  background-color: #fafafa;
+  padding: 8rem;
+  margin-top: 6.4rem;
+
+  h3 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    span {
+      &:nth-child(1) {
+        font-weight: 400;
+        font-size: 1.6rem;
+      }
+
+      &:nth-child(2) {
+        font-size: 3.2rem;
+      }
+    }
+  }
+
+  .nameWrap {
+    flex-shrink: 0;
+    width: 20rem;
+  }
+
+  .name {
+    font-size: 2.6rem;
+    font-weight: bold;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    padding-top: 0.6rem;
+  }
+
+  .enname {
+    font-size: 1.4rem;
+    letter-spacing: 0.12em;
+    margin-top: 0.6rem;
+  }
+}
+
+.prof {
+  margin-top: 4rem;
+  display: flex;
+  gap: 4rem;
+}
+
+.desc {
+  line-height: 2;
+  font-size: 1.5rem;
+
+  p {
+    &:not(:first-child) {
+      margin-top: 1.5em;
+    }
+  }
+}

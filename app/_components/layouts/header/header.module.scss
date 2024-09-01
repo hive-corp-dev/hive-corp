@@ -1,0 +1,84 @@
+@import "@sass-utils";
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2.4rem 0;
+  z-index: 100;
+  pointer-events: none;
+
+  &.isWhite {
+    .logo {
+      color: $c-white;
+    }
+
+    .link {
+      color: $c-white;
+    }
+
+    .btn {
+      background-color: $c-white;
+      color: $c-black-d;
+      border-color: $c-white;
+
+      @include hover {
+        &:hover {
+          background-color: transparent;
+          color: $c-white;
+        }
+      }
+    }
+  }
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  display: flex;
+}
+
+.logo {
+  font-weight: 300;
+  font-size: 4rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  pointer-events: auto;
+  transition: all 0.3s;
+}
+
+.nav {
+  height: 100%;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: 3.2rem;
+  height: 100%;
+}
+
+.link {
+  pointer-events: auto;
+  transition: all 0.3s;
+}
+
+.btn {
+  display: block;
+  padding: 1.2rem 2.2rem;
+  background-color: $c-black;
+  border: 0.1rem solid $c-black;
+  color: $c-white;
+  pointer-events: auto;
+  transition: all 0.3s;
+
+  @include hover {
+    &:hover {
+      background-color: $c-white;
+      color: $c-black;
+    }
+  }
+}
