@@ -11,9 +11,7 @@ export default function HomePage() {
     <main className={styles.main}>
       <Mv />
       <Business />
-      <HeaderWhiteSection>
-        <Service />
-      </HeaderWhiteSection>
+      <Service />
       <About />
       <Contact />
     </main>

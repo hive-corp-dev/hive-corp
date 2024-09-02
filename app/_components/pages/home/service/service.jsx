@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useContext, useRef } from "react";
+import { HeaderContext } from "@/app/_context/header-context";
 import Container from "@/app/_components/common/container/container";
 import { openSans } from "@/app/_utils/fonts";
 import styles from "./service.module.scss";
@@ -7,8 +11,39 @@ import Link from "next/link";
 import { RxExternalLink } from "react-icons/rx";
 
 export default function Service() {
+  const { setHeaderIsWhite } = useContext(HeaderContext);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observerCallback = ([entry]) => {
+      setHeaderIsWhite(entry.isIntersecting);
+    };
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px 0px -100%",
+      threshold: 0,
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    const observeElement = () => {
+      if (sectionRef.current) {
+        observer.observe(sectionRef.current);
+      }
+    };
+
+    requestAnimationFrame(observeElement); // DOMがレンダリングされた後にオブザーバーを設定
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section className={styles.section} id="service">
+    <section className={styles.section} id="service" ref={sectionRef}>
       <Container>
         <h2 className={styles.title}>
           <SectionTitle en="OUR SERVICE" jp="運営中のサービス" />
