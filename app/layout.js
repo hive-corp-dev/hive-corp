@@ -6,7 +6,7 @@ import Footer from "./_components/layouts/footer/footer";
 import { HeaderContextProvider } from "./_context/header-context";
 import { HamburgerMenuContextProvider } from "./_context/hamburger-menu-context";
 import HamburgerMenu from "./_components/layouts/hamburger-menu/hamburger-menu";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import GoogleAnalytics from "@next/third-parties/google";
 
 const notoSansJp = Noto_Sans_JP({
   subsets: ["latin"],
