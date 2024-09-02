@@ -54,11 +54,6 @@
   right: -5%;
   top: -13rem;
 
-  // @include tab {
-  //   width: 50%;
-  //   top: 0;
-  // }
-
   @include tab {
     position: static;
     width: 100%;
