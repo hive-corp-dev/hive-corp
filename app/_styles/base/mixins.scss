@@ -80,10 +80,15 @@ $bp-sp-s: 550px;
   justify-content: center;
   background-color: $c-white;
   border: 0.1rem solid $c-black;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: $c-black;
+  font-size: 1.6rem;
   font-weight: 400;
   transition: all 0.3s;
+
+  @include sp {
+    font-size: 1.4rem;
+  }
 
   @include hover {
     &:hover {

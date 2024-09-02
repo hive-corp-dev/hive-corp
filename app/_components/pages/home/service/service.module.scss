@@ -25,6 +25,10 @@
 
 .list {
   margin-top: 8rem;
+
+  @include sp {
+    margin-top: 4rem;
+  }
 }
 
 .item {

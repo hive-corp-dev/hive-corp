@@ -5,7 +5,7 @@
 }
 
 .main {
-  padding: 8rem 0;
+  padding: 8rem 0 5.6rem;
   background-color: #0d151e;
 }
 
@@ -19,11 +19,34 @@
 }
 
 .infoWrap {
+  @include sp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+.catch {
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.75;
+  letter-spacing: 0.1em;
+  margin-top: 2.4rem;
+
+  @include sp {
+    text-align: center;
+    margin-top: 1.6rem;
+  }
 }
 
 .logo {
-  font-size: 4rem;
-  font-weight: 300;
+  width: 14rem;
+  display: flex;
+
+  @include sp {
+    width: 16rem;
+  }
 }
 
 .info {
@@ -34,12 +57,119 @@
 }
 
 .nav {
+  @include sp {
+    margin: 3.2rem auto 0;
+  }
 }
 
 .list {
   display: flex;
   flex-wrap: wrap;
   gap: 3.2rem;
+
+  @include sp {
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: center;
+  }
+}
+
+.link {
+  @include sp {
+    padding: 0.4rem 0;
+    font-size: 1.3rem;
+  }
+}
+
+.subLinkWrap {
+  margin-top: 2.4rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.subLink {
+  font-size: 1.4rem;
+  letter-spacing: 0.08em;
+  border-bottom: 0.1rem solid $c-white;
+
+  @include sp {
+    font-size: 1.1rem;
+  }
+}
+
+.subContent {
+  margin-top: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.bannerWrap {
+  width: 100%;
+}
+
+.bannerText {
+  font-size: 1.3rem;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+
+  @include sp {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+}
+
+.banners {
+  display: flex;
+  gap: 1.6rem;
+  margin-top: 1.6rem;
+
+  @include sp {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.banner {
+  width: 18rem;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  transition: all 0.3s;
+
+  @include sp {
+    width: 50%;
+    max-width: 20rem;
+  }
+
+  @include hover {
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.copyWrap {
+  position: relative;
+  background-color: #0d151e;
+  text-align: center;
+  font-weight: 400;
+  font-size: 1.2rem;
+  padding: 1.6rem 0;
+  letter-spacing: 0.08em;
+  display: flex;
+  justify-content: space-between;
+
+  &::before {
+    content: "";
+    width: calc(100%);
+    height: 0.1rem;
+    background-color: #47525e;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
 }
 
 .copy {

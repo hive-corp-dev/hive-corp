@@ -30,7 +30,7 @@ export default function Service() {
               ホームページ制作サービス
             </p>
             <div className={styles.thumb}>
-              <Image src="/images/works-01.png" width={1000} height={900} alt="" />
+              <Image src="/images/works-01.png" width={840} height={464} alt="" />
             </div>
             <div className={styles.exp}>
               <p>
@@ -59,7 +59,7 @@ export default function Service() {
             </div>
             <p className={styles.subTitle}>高品質なコーディング代行サービス</p>
             <div className={styles.thumb}>
-              <Image src="/images/works-02.png" width={1000} height={900} alt="CodeHive" />
+              <Image src="/images/works-02.png" width={840} height={464} alt="CodeHive" />
             </div>
             <div className={styles.exp}>
               <p>

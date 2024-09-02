@@ -11,9 +11,8 @@ export default function Mv() {
       <Container className={styles.container}>
         <div className={styles.content}>
           <h1 className={styles.title}>
-            <span>私たちは、ホームページ制作から集客まで</span>
-            <span>一貫してトータルサポートする</span>
-            <span>Web制作会社です</span>
+            <span>ホームページ制作から集客まで</span>
+            <span>一貫してトータルサポート</span>
           </h1>
 
           <Image className={styles.img} src="/images/mv-neww.png" width={1200} height={1200} alt="" />
@@ -27,12 +26,12 @@ export default function Mv() {
           </p>
 
           <div className={styles.btns}>
-            <Link href="/#service" className={`${styles.btn} ${openSans.className}`}>
+            <a href="/#service" className={`${styles.btn} ${openSans.className}`}>
               SERVICE
-            </Link>
-            <Link href="/#contact" className={`${styles.btn} ${openSans.className}`}>
+            </a>
+            <a href="/#contact" className={`${styles.btn} ${openSans.className}`}>
               CONTACT
-            </Link>
+            </a>
           </div>
         </div>
       </Container>

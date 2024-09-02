@@ -2,6 +2,8 @@ import Link from "next/link";
 import Container from "../../common/container/container";
 import styles from "./footer.module.scss";
 import { openSans } from "@/app/_utils/fonts";
+import Image from "next/image";
+import { CODEHIVE_URL, JAM_URL } from "@/app/_data/data";
 
 export default function Footer() {
   return (
@@ -11,30 +13,59 @@ export default function Footer() {
           <div className={styles.content}>
             <div className={styles.infoWrap}>
               <Link href="/" className={`${styles.logo} ${openSans.className}`}>
-                HIVE
+                <Image src="/images/logo-text-white.svg" width={140} height={33} alt="HIVE Logo" />
               </Link>
-              <p className={styles.info}>
+
+              <p className={styles.catch}>
                 ホームページ制作から集客まで
                 <br />
-                トータルサポート
+                一貫してトータルサポート
               </p>
             </div>
             <nav className={styles.nav}>
               <ul className={`${styles.list} ${openSans.className}`}>
                 <li>
-                  <Link href="/#business">BUSINESS</Link>
+                  <Link className={styles.link} href="/#business">
+                    BUSINESS
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/#service">SERVICE</Link>
+                  <Link className={styles.link} href="/#service">
+                    SERVICE
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/#about">ABOUT</Link>
+                  <Link className={styles.link} href="/#about">
+                    ABOUT
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/#contact">CONTACT</Link>
+                  <Link className={styles.link} href="/#contact">
+                    CONTACT
+                  </Link>
                 </li>
               </ul>
+
+              <div className={styles.subLinkWrap}>
+                <Link href="/privacy-policy" className={styles.subLink}>
+                  PRIVACY POLICY
+                </Link>
+              </div>
             </nav>
+          </div>
+
+          <div className={styles.subContent}>
+            <div className={styles.bannerWrap}>
+              <p className={styles.bannerText}>運営中のサービス</p>
+              <div className={styles.banners}>
+                <a href={`${JAM_URL}`} target="_blank" rel="noopener" className={styles.banner}>
+                  <Image src="/images/jam-banner.png" alt="JAM banner" width={200} height={60} />
+                </a>
+                <a href={`${CODEHIVE_URL}`} target="_blank" rel="noopener" className={styles.banner}>
+                  <Image src="/images/codehive-banner.png" alt="JAM banner" width={200} height={60} />
+                </a>
+              </div>
+            </div>
           </div>
         </Container>
       </div>

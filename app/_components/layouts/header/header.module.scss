@@ -8,50 +8,45 @@
   padding: 2.4rem 0;
   z-index: 100;
   pointer-events: none;
-
-  &.isWhite {
-    .logo {
-      color: $c-white;
-    }
-
-    .link {
-      color: $c-white;
-    }
-
-    .btn {
-      background-color: $c-white;
-      color: $c-black-d;
-      border-color: $c-white;
-
-      @include hover {
-        &:hover {
-          background-color: transparent;
-          color: $c-white;
-        }
-      }
-    }
-  }
 }
 
 .content {
   width: 100%;
   height: 100%;
   justify-content: space-between;
+  align-items: center;
   display: flex;
 }
 
 .logo {
-  font-weight: 300;
-  font-size: 4rem;
-  line-height: 1;
+  position: relative;
+  width: 13rem;
+  height: 3.3rem;
   display: flex;
   align-items: center;
   pointer-events: auto;
   transition: all 0.3s;
 
+  @include sp {
+    width: 11rem;
+    height: 2.8rem;
+  }
+
   img {
-    width: 3.6rem;
-    margin-right: 0.8rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: all 0.3s;
+
+    &:nth-child(2) {
+      opacity: 0;
+    }
+  }
+
+  @include hover {
+    &:hover {
+      opacity: 0.7;
+    }
   }
 }
 
@@ -88,6 +83,112 @@
     &:hover {
       background-color: $c-white;
       color: $c-black;
+    }
+  }
+}
+
+.hamburgerBtn {
+  display: none;
+  position: fixed;
+  top: 1.8rem;
+  right: 2.4rem;
+  width: 4rem;
+  height: 4rem;
+  z-index: $z-hamburger-btn;
+
+  @include sp {
+    top: 2.2rem;
+    right: 2rem;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+  }
+
+  &::before,
+  &::after {
+    width: 3rem;
+    height: 0.1rem;
+    background-color: $c-black;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    transition: all 0.3s;
+  }
+
+  &::before {
+    transform: translateY(-0.6rem);
+  }
+
+  &::after {
+    transform: translateY(0.6rem);
+  }
+
+  @include sp {
+    display: block;
+  }
+
+  &.isOpen {
+    right: 2rem;
+
+    &::before,
+    &::after {
+      background-color: $c-white;
+    }
+
+    &::before {
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+
+  &.isWhite {
+    &::before,
+    &::after {
+      background-color: $c-white;
+    }
+  }
+}
+
+.header {
+  &.isWhite,
+  &.isHamburgerOpen {
+    .link {
+      color: $c-white;
+    }
+
+    .logo {
+      img {
+        &:nth-child(1) {
+          opacity: 0;
+        }
+
+        &:nth-child(2) {
+          opacity: 1;
+        }
+      }
+    }
+
+    .btn {
+      background-color: $c-white;
+      color: $c-black-d;
+      border-color: $c-white;
+
+      @include hover {
+        &:hover {
+          background-color: transparent;
+          color: $c-white;
+        }
+      }
     }
   }
 }

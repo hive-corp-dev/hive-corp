@@ -21,7 +21,6 @@
 }
 
 .box {
-  // background-color: #f8f8f8;
   background-color: $c-white;
   padding: 8rem;
   margin-top: 6.4rem;
@@ -31,7 +30,7 @@
   }
 
   @include sp {
-    padding: 0 2.4rem 2.4rem;
+    padding: 1.6rem 2rem 2rem;
     margin-top: 3.2rem;
   }
 }

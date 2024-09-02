@@ -4,6 +4,8 @@ import { Noto_Sans_JP } from "next/font/google";
 import Header from "./_components/layouts/header/header";
 import Footer from "./_components/layouts/footer/footer";
 import { HeaderContextProvider } from "./_context/header-context";
+import { HamburgerMenuContextProvider } from "./_context/hamburger-menu-context";
+import HamburgerMenu from "./_components/layouts/hamburger-menu/hamburger-menu";
 
 const notoSansJp = Noto_Sans_JP({
   subsets: ["latin"],
@@ -14,13 +16,16 @@ const notoSansJp = Noto_Sans_JP({
 export default function RootLayout({ children }) {
   return (
     <html lang="ja">
-      <HeaderContextProvider>
-        <body className={notoSansJp.className}>
-          <Header />
-          {children}
-          <Footer />
-        </body>
-      </HeaderContextProvider>
+      <HamburgerMenuContextProvider>
+        <HeaderContextProvider>
+          <body className={notoSansJp.className}>
+            <Header />
+            <HamburgerMenu />
+            {children}
+            <Footer />
+          </body>
+        </HeaderContextProvider>
+      </HamburgerMenuContextProvider>
     </html>
   );
 }
