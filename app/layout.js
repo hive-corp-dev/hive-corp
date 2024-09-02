@@ -6,7 +6,7 @@ import Footer from "./_components/layouts/footer/footer";
 import { HeaderContextProvider } from "./_context/header-context";
 import { HamburgerMenuContextProvider } from "./_context/hamburger-menu-context";
 import HamburgerMenu from "./_components/layouts/hamburger-menu/hamburger-menu";
-import GoogleAnalytics from "@next/third-parties/google";
+import GoogleAnalytics from "./_utils/google-analytics";
 
 const notoSansJp = Noto_Sans_JP({
   subsets: ["latin"],
@@ -17,6 +17,9 @@ const notoSansJp = Noto_Sans_JP({
 export default function RootLayout({ children }) {
   return (
     <html lang="ja">
+      <head>
+        <GoogleAnalytics />
+      </head>
       <HamburgerMenuContextProvider>
         <HeaderContextProvider>
           <body className={notoSansJp.className}>
@@ -27,8 +30,6 @@ export default function RootLayout({ children }) {
           </body>
         </HeaderContextProvider>
       </HamburgerMenuContextProvider>
-
-      {process.env.GOOGLE_ANALYTICS_ID && <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID} />}
     </html>
   );
 }
