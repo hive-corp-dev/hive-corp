@@ -1,7 +1,16 @@
-import Container from "./_components/common/container/container";
 import { openSans } from "./_utils/fonts";
 import styles from "./not-found.module.scss";
 import Link from "next/link";
+import { outputMetadata } from "./_utils/outputMetadata";
+import { NOT_FOUND_METADATA } from "./_data/metadata";
+
+export async function generateMetadata() {
+  return outputMetadata(NOT_FOUND_METADATA.title, NOT_FOUND_METADATA.description, null, {
+    robots: {
+      index: false,
+    },
+  });
+}
 
 export default function NotFoundPage() {
   return (

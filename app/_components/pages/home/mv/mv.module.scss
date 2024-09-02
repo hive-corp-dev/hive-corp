@@ -2,11 +2,13 @@
 
 .mv {
   padding: 22rem 0 24rem;
-  // min-height: 80rem;
-  // height: 100svh;
   display: flex;
   align-items: center;
   overflow: hidden;
+
+  @include tab {
+    padding: 16rem 0 18rem;
+  }
 
   @include sp {
     height: auto;
@@ -37,9 +39,12 @@
   align-items: flex-start;
   line-height: 1.6;
 
+  @include tab {
+    align-items: center;
+  }
+
   @include sp {
     font-size: 2.2rem;
-    align-items: center;
   }
 }
 
@@ -49,10 +54,16 @@
   right: -5%;
   top: -13rem;
 
-  @include sp {
+  // @include tab {
+  //   width: 50%;
+  //   top: 0;
+  // }
+
+  @include tab {
     position: static;
     width: 100%;
-    margin-top: -6%;
+    max-width: 70rem;
+    margin: -6% auto 0;
   }
 }
 
@@ -61,10 +72,15 @@
   line-height: 2;
   max-width: 56rem;
 
-  @include sp {
-    margin-top: 0;
-    font-size: 1.4rem;
+  @include tab {
+    font-size: 1.5rem;
+    text-align: center;
+    max-width: 100%;
     margin-top: -6%;
+  }
+
+  @include sp {
+    font-size: 1.4rem;
   }
 
   br {
@@ -79,8 +95,11 @@
   display: flex;
   gap: 1.6rem;
 
-  @include sp {
+  @include tab {
     justify-content: center;
+  }
+
+  @include sp {
     margin-top: 3.2rem;
   }
 }

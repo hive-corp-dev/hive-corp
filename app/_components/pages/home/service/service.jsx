@@ -21,7 +21,7 @@ export default function Service() {
 
     const observerOptions = {
       root: null,
-      rootMargin: "0px 0px -100%",
+      rootMargin: "-1px 0px -100%",
       threshold: 0,
     };
 

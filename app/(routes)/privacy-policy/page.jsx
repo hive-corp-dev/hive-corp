@@ -2,6 +2,14 @@ import { openSans } from "@/app/_utils/fonts";
 import Container from "@/app/_components/common/container/container";
 import { MAIL_ADDRESS } from "@/app/_data/data";
 import styles from "./privacy-policy-page.module.scss";
+import { outputMetadata } from "@/app/_utils/outputMetadata";
+import { PRIVACY_METADATA } from "@/app/_data/metadata";
+
+export const metadata = outputMetadata(PRIVACY_METADATA.title, PRIVACY_METADATA.description, PRIVACY_METADATA.slug, {
+  robots: {
+    index: false,
+  },
+});
 
 export default function PrivacyPage() {
   return (

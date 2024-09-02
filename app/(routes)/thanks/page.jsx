@@ -2,6 +2,14 @@ import { openSans } from "@/app/_utils/fonts";
 import styles from "./thanks-page.module.scss";
 import Container from "@/app/_components/common/container/container";
 import { MAIL_ADDRESS } from "@/app/_data/data";
+import { outputMetadata } from "@/app/_utils/outputMetadata";
+import { THANKS_METADATA } from "@/app/_data/metadata";
+
+export const metadata = outputMetadata(THANKS_METADATA.title, THANKS_METADATA.description, THANKS_METADATA.slug, {
+  robots: {
+    index: false,
+  },
+});
 
 export default function ThanksPage() {
   return (
