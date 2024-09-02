@@ -8,6 +8,14 @@
   padding: 16rem 0 18rem;
   background-image: linear-gradient(to right, $c-white 1px, /* 線の幅 */ #f8f8f8 1px);
   background-size: calc(100% / 6) 100%;
+
+  @include tab {
+    background-size: calc(100% / 4) 100%;
+  }
+
+  @include sp {
+    padding: 12rem 0 10rem;
+  }
 }
 
 .title {
@@ -19,12 +27,29 @@
     &:nth-child(1) {
       font-weight: 300;
       font-size: 5.6rem;
+
+      @include tab {
+        font-size: 4.8rem;
+      }
+
+      @include sp {
+        font-size: 3.2rem;
+      }
     }
 
     &:nth-child(2) {
       font-size: 1.6rem;
       letter-spacing: 0.2em;
       font-weight: 500;
+
+      @include tab {
+        font-size: 1.4rem;
+      }
+
+      @include sp {
+        font-size: 1.2rem;
+        letter-spacing: 0.1em;
+      }
     }
   }
 }
@@ -33,6 +58,14 @@
   padding: 16rem 0;
   background-image: linear-gradient(to right, #f8f8f8 1px, /* 線の幅 */ transparent 1px);
   background-size: calc(100% / 6) 100%;
+
+  @include tab {
+    background-size: calc(100% / 4) 100%;
+  }
+
+  @include sp {
+    padding: 8rem 0;
+  }
 }
 
 .container {
@@ -40,14 +73,22 @@
 }
 
 .content {
-  margin-top: 4rem;
   font-size: 1.5rem;
   line-height: 2.25;
+
+  @include sp {
+    font-size: 1.4rem;
+    line-height: 2;
+  }
 
   h2 {
     font-size: 2.4rem;
     line-height: 1.5;
     font-weight: bold;
+
+    @include sp {
+      font-size: 2rem;
+    }
   }
 
   ol {
@@ -100,5 +141,25 @@
 
   & > * {
     margin-top: 2em;
+
+    @include sp {
+      margin-top: 1.5em;
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h2 {
+    @include sp {
+      margin-top: 2em;
+    }
+
+    & + * {
+      @include sp {
+        margin-top: 1em;
+      }
+    }
   }
 }

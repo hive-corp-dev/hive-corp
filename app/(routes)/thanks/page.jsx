@@ -14,7 +14,11 @@ export default function ThanksPage() {
       </section>
       <section className={styles.thanks}>
         <Container>
-          <h2>お問い合わせありがとうございます</h2>
+          <h2>
+            お問い合わせ
+            <br />
+            ありがとうございます
+          </h2>
           <div className={styles.text}>
             <p>
               お問い合わせいただきありがとうございます。
