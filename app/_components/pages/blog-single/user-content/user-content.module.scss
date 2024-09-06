@@ -1,0 +1,19 @@
+@import "@sass-utils";
+
+.content {
+  margin-top: 4rem;
+  line-height: 2;
+
+  h2 {
+    font-size: 2.4rem;
+  }
+
+  // margins
+  & > * {
+    margin-top: 2.4rem;
+  }
+
+  h2 {
+    margin-top: 6.4rem;
+  }
+}

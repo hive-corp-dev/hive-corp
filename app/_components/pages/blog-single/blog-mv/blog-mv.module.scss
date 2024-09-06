@@ -1,0 +1,55 @@
+@import "@sass-utils";
+
+.mv {
+  padding: 14rem 0 12rem;
+  background-image: linear-gradient(to right, $c-white 1px, /* 線の幅 */ #f8f8f8 1px);
+  background-size: calc(100% / 6) 100%;
+
+  @include tab {
+    background-size: calc(100% / 4) 100%;
+  }
+
+  @include sp {
+    padding: 12rem 0 10rem;
+  }
+}
+
+.cat {
+  font-size: 1.4rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+
+  svg {
+    margin-right: 0.4rem;
+  }
+}
+
+.title {
+  font-size: 3.2rem;
+  font-weight: bold;
+  margin-top: 1.6rem;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2.4rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  font-size: 1.4rem;
+
+  li {
+    &::before {
+      content: "#";
+    }
+  }
+}
+
+.date {
+  font-size: 1.4rem;
+}
