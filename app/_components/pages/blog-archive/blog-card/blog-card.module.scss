@@ -1,0 +1,50 @@
+@import "@sass-utils";
+
+.link {
+  display: flex;
+  flex-direction: column;
+  background-color: $c-white;
+  flex-grow: 1;
+  border: 0.1rem solid #eee;
+}
+
+.thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.body {
+  padding: 1.6rem;
+}
+
+.time {
+  font-size: 1.3rem;
+  font-weight: 500;
+  opacity: 0.6;
+}
+
+.title {
+  font-size: 1.6rem;
+  margin-top: 0.4rem;
+  min-height: 3em;
+}
+
+.desc {
+  font-size: 1.3rem;
+  line-height: 1.75;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin-top: 0.8rem;
+}

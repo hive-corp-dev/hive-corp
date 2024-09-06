@@ -9,7 +9,7 @@ const BlogPost = defineCollection({
     description: z.string(),
     thumbnail: z.preprocess((val) => {
       const defaultThumbnail = "/images/no-image.png"; // デフォルト画像のパス
-      if (val === undefined || val === null) {
+      if (val === undefined || val === null || val === "") {
         return defaultThumbnail;
       }
       return val;
