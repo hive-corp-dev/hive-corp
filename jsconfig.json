@@ -2,7 +2,8 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./*"],
-      "@sass-utils": ["./app/_styles/base/utils.scss"]
+      "@sass-utils": ["./app/_styles/base/utils.scss"],
+      "content-collections": ["./.content-collections/generated"]
     }
   }
 }

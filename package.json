@@ -22,6 +22,9 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@content-collections/core": "^0.7.0",
+    "@content-collections/mdx": "^0.1.4",
+    "@content-collections/next": "^0.2.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.7"
   }
