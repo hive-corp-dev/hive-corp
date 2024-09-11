@@ -20,7 +20,10 @@
 .list {
   @include sp {
     padding: 0 2rem;
-    overflow: scroll;
+    overflow-x: scroll;
+  }
+
+  &::-webkit-scrollbar {
   }
 }
 
@@ -39,6 +42,10 @@
   position: relative;
   text-decoration: underline;
   transition: all 0.3s;
+
+  @include sp {
+    white-space: nowrap;
+  }
 
   &.isHome {
     padding-left: 2rem;

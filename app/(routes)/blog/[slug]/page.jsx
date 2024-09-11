@@ -9,7 +9,9 @@ import AuthorInfo from "@/app/_components/pages/blog-single/author-info/author-i
 import Link from "next/link";
 import { openSans } from "@/app/_utils/fonts";
 import Breadcrumb from "@/app/_components/common/breadcrumb/breadcrumb";
+import SnsShare from "@/app/_components/pages/blog-single/sns-share/sns-share";
 import { outputMetadata } from "@/app/_utils/outputMetadata";
+import { HIVE_URL } from "@/app/_data/data";
 
 export const dynamicParams = false;
 
@@ -53,6 +55,8 @@ export default function BlogPost({ params }) {
             {/* <div className={styles.author}>
               <AuthorInfo authorId={author} />
             </div> */}
+
+            <SnsShare postUrl={`${HIVE_URL}/blog/${params.slug}`} title={title} />
 
             <div className={styles.archiveBtnWrap}>
               <Link className={`${styles.archiveBtn} ${openSans.className}`} href="/blog">
