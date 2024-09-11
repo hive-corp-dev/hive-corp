@@ -104,6 +104,16 @@
   &:focus {
     border-color: $c-text;
   }
+
+  &::placeholder {
+    color: #979797;
+  }
+}
+
+.select option {
+  &[value=""] {
+    color: red;
+  }
 }
 
 .textarea {

@@ -32,6 +32,7 @@ const schema = yup.object().shape({
 
 export default function Form() {
   const router = useRouter();
+  const categoryPlaceholder = "以下から選択してください";
 
   const {
     register,
@@ -44,7 +45,7 @@ export default function Form() {
       法人名: "",
       電話番号: "",
       メールアドレス: "",
-      お問い合わせ内容: "以下から選択してください",
+      お問い合わせ内容: categoryPlaceholder,
       お問い合わせ詳細: "",
     },
     resolver: yupResolver(schema),
@@ -65,6 +66,16 @@ export default function Form() {
         console.error("エラー:", error);
         alert("エラー: " + error);
       });
+  };
+
+  // selectにもplaceholderを設定
+  const handleSelectChange = (event) => {
+    const selectElement = event.target;
+    if (selectElement.value === categoryPlaceholder) {
+      selectElement.style.color = "#979797"; // プレースホルダーの色
+    } else {
+      selectElement.style.color = "#1d1d1f"; // 通常のテキスト色
+    }
   };
 
   return (
@@ -144,8 +155,15 @@ export default function Form() {
             お問い合わせ内容
           </label>
           <div className={`${styles.control} ${styles.isSelect}`}>
-            <select name="お問い合わせ内容" id="category" className={styles.select} {...register("お問い合わせ内容")}>
-              <option>以下から選択してください</option>
+            <select
+              name="お問い合わせ内容"
+              id="category"
+              className={styles.select}
+              {...register("お問い合わせ内容")}
+              onChange={handleSelectChange}
+              style={{ color: "gray" }}
+            >
+              <option>{categoryPlaceholder}</option>
               <option value="ホームページ制作について">ホームページ制作について</option>
               <option value="Instagram運用代行について">Instagram運用代行について</option>
               <option value="MEO対策について">MEO対策について</option>

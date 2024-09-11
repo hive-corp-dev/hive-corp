@@ -21,6 +21,7 @@
   @include sp {
     padding: 0 2rem;
     overflow-x: scroll;
+    display: flex;
   }
 
   &::-webkit-scrollbar {
