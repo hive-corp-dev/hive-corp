@@ -1,14 +1,19 @@
+export const BLOG_CATEGORY_PATH = "/blog/category/";
+export const BLOG_TAG_PATH = "/blog/tag/";
+
 export const BLOG_CATEGORIES = [
-  { slug: "company", label: "会社" },
-  { slug: "engineering", label: "エンジニアリング" },
-  { slug: "education", label: "教育" },
-  { slug: "customers", label: "顧客" },
+  { slug: "website", label: "ホームページ" },
+  // { slug: "tech-topics", label: "技術トピック" },
+  // { slug: "seo", label: "SEO対策" },
+  // { slug: "meo", label: "MEO対策" },
+  // { slug: "sns", label: "SNS運用" },
 ];
 
+// 並べ替えは手動で行う
 export const BLOG_TAGS = [
-  { slug: "technology", label: "技術" },
-  { slug: "news", label: "ニュース" },
-  { slug: "announcement", label: "お知らせ" },
-  { slug: "event", label: "イベント" },
-  { slug: "update", label: "更新" },
+  { slug: "useful-info", label: "お役立ち情報" },
+  { slug: "marketing", label: "マーケティング" },
 ];
+
+export const BLOG_CATEGORY_SLUGS = BLOG_CATEGORIES.map((category) => category.slug);
+export const BLOG_TAG_SLUGS = BLOG_TAGS.map((tag) => tag.slug);

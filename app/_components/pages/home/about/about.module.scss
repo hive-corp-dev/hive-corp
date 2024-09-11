@@ -144,8 +144,12 @@
 
   .enname {
     font-size: 1.4rem;
-    letter-spacing: 0.12em;
-    margin-top: 0.6rem;
+    letter-spacing: 0.08em;
+    margin-top: 0.8rem;
+
+    span {
+      margin-right: 0.8rem;
+    }
 
     @include sp {
       font-size: 1rem;

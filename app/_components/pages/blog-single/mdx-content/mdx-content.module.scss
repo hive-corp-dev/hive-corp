@@ -1,0 +1,114 @@
+@import "@sass-utils";
+
+.content {
+  margin-top: 4rem;
+  line-height: 2;
+
+  @include sp {
+    font-size: 1.4rem;
+  }
+
+  h2 {
+    font-size: 2.4rem;
+    background-color: #e8e8ed;
+    background-color: #efeff5;
+    padding: 1.2rem 2.4rem;
+    line-height: 1.5;
+
+    @include sp {
+      font-size: 2rem;
+      padding: 0.8rem 1.6rem;
+    }
+  }
+
+  h3 {
+    font-size: 2.2rem;
+    padding-bottom: 1rem;
+    border-bottom: 0.3rem solid #efeff5;
+    line-height: 1.5;
+
+    @include sp {
+      font-size: 1.8rem;
+    }
+  }
+
+  h4 {
+    position: relative;
+    font-size: 2rem;
+    font-weight: bold;
+    padding-left: 1.2rem;
+    line-height: 1.5;
+    // border-left: 0.3rem solid;
+
+    @include sp {
+      font-size: 1.6rem;
+    }
+
+    &::before {
+      content: "";
+      width: 0.3rem;
+      height: 80%;
+      background-color: $c-black;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto 0;
+    }
+  }
+
+  ul {
+    li {
+      display: flex;
+
+      &::before {
+        content: "・";
+      }
+    }
+  }
+
+  a {
+    color: $c-link;
+    text-decoration: underline;
+    transition: opacity 0.3s;
+
+    @include hover {
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  // margins
+  & > * {
+    margin-top: 2.4rem;
+
+    @include sp {
+      margin-top: 2rem;
+    }
+  }
+
+  h2 {
+    margin-top: 8rem;
+
+    @include sp {
+      margin-top: 6.4rem;
+    }
+  }
+
+  h3 {
+    margin-top: 8rem;
+
+    @include sp {
+      margin-top: 6.4rem;
+    }
+  }
+
+  h4 {
+    margin-top: 4.8rem;
+
+    @include sp {
+      margin-top: 4rem;
+    }
+  }
+}

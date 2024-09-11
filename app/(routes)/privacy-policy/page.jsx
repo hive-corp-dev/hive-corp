@@ -4,6 +4,7 @@ import { MAIL_ADDRESS } from "@/app/_data/data";
 import styles from "./privacy-policy-page.module.scss";
 import { outputMetadata } from "@/app/_utils/outputMetadata";
 import { PRIVACY_METADATA } from "@/app/_data/metadata";
+import Breadcrumb from "@/app/_components/common/breadcrumb/breadcrumb";
 
 export const metadata = outputMetadata(PRIVACY_METADATA.title, PRIVACY_METADATA.description, PRIVACY_METADATA.slug, {
   robots: {
@@ -224,6 +225,7 @@ export default function PrivacyPage() {
           </div>
         </Container>
       </section>
+      <Breadcrumb paths={[{ name: "プライバシーポリシー" }]} />
     </main>
   );
 }

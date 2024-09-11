@@ -36,6 +36,11 @@ export default function HamburgerMenu() {
             </a>
           </li>
           <li>
+            <Link href="/blog" onClick={closeHamburgerMenu}>
+              <span>BLOG</span>
+            </Link>
+          </li>
+          <li>
             <a href="/#contact" onClick={closeHamburgerMenu}>
               <span>CONTACT</span>
             </a>

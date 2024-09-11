@@ -1,0 +1,73 @@
+@import "@sass-utils";
+
+.wrap {
+  padding: 1.6rem 0;
+  background-color: $c-white;
+  border-top: 0.1rem solid #f8f8f8;
+  font-size: 1.4rem;
+
+  @include sp {
+    font-size: 1.2rem;
+  }
+}
+
+.container {
+  @include sp {
+    padding: 0;
+  }
+}
+
+.list {
+  @include sp {
+    padding: 0 2rem;
+    overflow: scroll;
+  }
+}
+
+.item {
+  position: relative;
+  display: inline;
+  margin-right: 0.8rem;
+
+  @include sp {
+    margin-right: 0.4rem;
+    white-space: nowrap;
+  }
+}
+
+.link {
+  position: relative;
+  text-decoration: underline;
+  transition: all 0.3s;
+
+  &.isHome {
+    padding-left: 2rem;
+
+    svg {
+      position: absolute;
+      left: 0;
+      top: 0.4rem;
+    }
+  }
+
+  @include hover {
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+.name {
+}
+
+.arrow {
+  font-size: 1.8rem;
+  margin-left: 0.8rem;
+  transform: translateY(0.3rem);
+  color: #929292;
+
+  @include sp {
+    margin-left: 0.4rem;
+    font-size: 1.5rem;
+  }
+}

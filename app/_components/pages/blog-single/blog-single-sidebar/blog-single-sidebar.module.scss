@@ -1,0 +1,106 @@
+@import "@sass-utils";
+
+.sidebar {
+  width: 30rem;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 6.4rem;
+
+  @include sp {
+    width: 100%;
+    gap: 4rem;
+  }
+}
+
+.sidebarBlock {
+  &.isSticky {
+    position: sticky;
+    top: 10rem;
+  }
+
+  &.isToc {
+    @include sp {
+      display: none;
+    }
+  }
+}
+
+.sidebarTitle {
+  font-size: 1.6rem;
+  font-weight: bold;
+  padding-bottom: 0.8rem;
+  border-bottom: 0.2rem solid;
+}
+
+.catList {
+  margin-top: 1.2rem;
+
+  li {
+  }
+}
+
+.catLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.4rem;
+  font-weight: 400;
+  gap: 0.8rem;
+  padding: 0.6rem 0;
+
+  span {
+    background-color: $c-black;
+    color: $c-white;
+    padding: 0.2rem 0.6rem;
+    // border-radius: 0.8rem;
+    font-size: 1rem;
+    font-weight: bold;
+    min-width: 2.7rem;
+    text-align: center;
+    border-radius: 2rem;
+  }
+
+  @include hover {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.catName {
+  display: flex;
+  align-items: center;
+
+  svg {
+    margin-right: 0.4rem;
+    transform: translateY(0.1rem);
+  }
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 2.4rem;
+  margin-top: 1.6rem;
+}
+
+.tagLink {
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  font-weight: 400;
+  padding: 0.4rem 0;
+
+  @include hover {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  svg {
+    margin-right: 0.4rem;
+    transform: translateY(0.1rem);
+  }
+}

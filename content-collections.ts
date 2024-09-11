@@ -1,4 +1,7 @@
 import { defineCollection, defineConfig } from "@content-collections/core";
+import { compileMDX } from "@content-collections/mdx";
+import { BLOG_CATEGORY_SLUGS, BLOG_TAG_SLUGS } from "./app/_data/blog-data";
+import rehypeSlug from "rehype-slug";
 
 const BlogPost = defineCollection({
   name: "BlogPost",
@@ -14,8 +17,8 @@ const BlogPost = defineCollection({
       }
       return val;
     }, z.string()),
-    category: z.enum(["company", "engineering", "education", "customers"]),
-    tags: z.array(z.enum(["technology", "news", "announcement", "event", "update"])),
+    category: z.enum(["website"]),
+    tags: z.array(z.enum(["useful-info", "marketing"])),
     publishedAt: z.preprocess((arg) => {
       if (typeof arg === "string" || arg instanceof Date) {
         return new Date(arg); // 文字列またはDateオブジェクトをDateに変換
@@ -23,6 +26,30 @@ const BlogPost = defineCollection({
     }, z.date()), // Dateオブジェクトとしてバリデーション
     author: z.enum(["tatsuya", "roku", "takumi"]),
   }),
+  transform: async (document, context) => {
+    // documentでエラー出てたのでchatgptで解決
+    const completeDocument = {
+      ...document,
+      content: document.content || "", // content プロパティを追加
+    };
+
+    const mdx = await compileMDX(context, completeDocument, {
+      rehypePlugins: [rehypeSlug],
+    });
+
+    return {
+      ...document,
+      mdx,
+    };
+
+    // const mdx = await compileMDX(context, document, {
+    //   rehypePlugins: [rehypeSlug],
+    // });
+    // return {
+    //   ...document,
+    //   mdx,
+    // };
+  },
 });
 
 export default defineConfig({

@@ -55,7 +55,9 @@ export default function About() {
             <div className={styles.prof}>
               <div className={styles.nameWrap}>
                 <p className={styles.name}>赤尾 起弥</p>
-                <p className={`${styles.enname} ${openSans.className}`}>TATSUYA AKAO</p>
+                <p className={`${styles.enname} ${openSans.className}`}>
+                  <span>TATSUYA</span> <span>AKAO</span>
+                </p>
               </div>
               <div className={styles.desc}>
                 <p>

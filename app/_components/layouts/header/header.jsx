@@ -57,6 +57,11 @@ export default function Header() {
                   </Link>
                 </li>
                 <li className={styles.item}>
+                  <Link className={styles.link} href="/blog">
+                    BLOG
+                  </Link>
+                </li>
+                <li className={styles.item}>
                   <Link href="/#contact" className={styles.btn}>
                     CONTACT
                   </Link>

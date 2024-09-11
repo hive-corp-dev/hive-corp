@@ -1,5 +1,5 @@
 export const SITE_INFO = {
-  siteName: "HIVE（ハイブ）",
+  siteName: "HIVE（ハイブ） | ホームページ制作とデジタルマーケティング支援",
   siteDescription:
     "HIVE（ハイブ）は、Webサイト制作、SNS運用代行、LINE公式構築、MEO対策を通じて、ビジネスの成長をサポートするWeb制作事業です。戦略的なマーケティングと一貫したサポートで、オンラインでの存在感を高め、顧客とのつながりを強化します。",
   siteUrl: "https://hive-corp.jp",
@@ -9,6 +9,13 @@ export const TOP_METADATA = {
   title: SITE_INFO.siteName,
   description: SITE_INFO.siteDescription,
   slug: "/",
+};
+
+export const BLOG_ARCHIVE_METADATA = {
+  title: `ブログ`,
+  description:
+    "HIVEのブログでは、Web制作やSNS運用、LINE公式構築、MEO対策など、デジタルマーケティングに役立つ情報や実践的なノウハウを提供します。最新の業界動向やビジネス成長に貢献するための戦略をお届けするブログです。",
+  slug: "/blog",
 };
 
 export const PRIVACY_METADATA = {

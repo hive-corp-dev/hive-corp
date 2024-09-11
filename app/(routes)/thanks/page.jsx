@@ -4,6 +4,7 @@ import Container from "@/app/_components/common/container/container";
 import { MAIL_ADDRESS } from "@/app/_data/data";
 import { outputMetadata } from "@/app/_utils/outputMetadata";
 import { THANKS_METADATA } from "@/app/_data/metadata";
+import Breadcrumb from "@/app/_components/common/breadcrumb/breadcrumb";
 
 export const metadata = outputMetadata(THANKS_METADATA.title, THANKS_METADATA.description, THANKS_METADATA.slug, {
   robots: {
@@ -51,6 +52,7 @@ export default function ThanksPage() {
           </div>
         </Container>
       </section>
+      <Breadcrumb paths={[{ name: "お問い合わせ完了" }]} />
     </main>
   );
 }

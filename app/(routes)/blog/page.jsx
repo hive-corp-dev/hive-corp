@@ -4,6 +4,17 @@ import Container from "@/app/_components/common/container/container";
 import BlogCard from "@/app/_components/pages/blog-archive/blog-card/blog-card";
 import { openSans } from "@/app/_utils/fonts";
 import { allBlogPosts } from "content-collections";
+import { postsSortedByDate } from "@/app/_utils/blog";
+import BlogArchiveSidebar from "@/app/_components/pages/blog-archive/blog-archive-sidebar/blog-archive-sidebar";
+import Breadcrumb from "@/app/_components/common/breadcrumb/breadcrumb";
+import { outputMetadata } from "@/app/_utils/outputMetadata";
+import { BLOG_ARCHIVE_METADATA } from "@/app/_data/metadata";
+
+export const metadata = outputMetadata(
+  BLOG_ARCHIVE_METADATA.title,
+  BLOG_ARCHIVE_METADATA.description,
+  BLOG_ARCHIVE_METADATA.slug
+);
 
 export default async function BlogArchivePage() {
   return (
@@ -13,66 +24,22 @@ export default async function BlogArchivePage() {
         <Container className={styles.inner}>
           <main className={styles.main}>
             <section className={styles.archive}>
+              <div className={styles.catTitle}>全カテゴリーの記事</div>
               <ul className={styles.list}>
-                {allBlogPosts.map((post) => {
-                  console.log(post);
-
-                  const { title, description, thumbnail, publishedAt, _meta } = post;
-
+                {postsSortedByDate.map((post) => {
                   return (
-                    <li key={_meta.path} className={styles.item}>
-                      <BlogCard
-                        slug={_meta.path}
-                        title={title}
-                        description={description}
-                        publishedAt={publishedAt}
-                        thumbnail={thumbnail}
-                      />
+                    <li key={post._meta.path} className={styles.item}>
+                      <BlogCard postData={post} />
                     </li>
                   );
                 })}
               </ul>
             </section>
           </main>
-          <aside className={styles.sidebar}>
-            <div className={styles.sidebarBlock}>
-              <div className={`${styles.sidebarTitle} ${openSans.className}`}>CATEGORY</div>
-              <ul className={styles.catList}>
-                <li>
-                  ホームページ<span className={openSans.className}>5</span>
-                </li>
-                <li>
-                  技術トピック<span className={openSans.className}>12</span>
-                </li>
-                <li>
-                  SEO対策<span className={openSans.className}>4</span>
-                </li>
-                <li>
-                  MEO対策<span className={openSans.className}>4</span>
-                </li>
-                <li>
-                  SNS運用<span className={openSans.className}>1</span>
-                </li>
-              </ul>
-            </div>
-            <div className={styles.sidebarBlock}>
-              <div className={`${styles.sidebarTitle} ${openSans.className}`}>KEYWORDS</div>
-              <ul className={styles.tagList}>
-                <li>Next.js</li>
-                <li>Vercel</li>
-                <li>Instagram</li>
-                <li>WordPress</li>
-                <li>LINE公式</li>
-                <li>CMS</li>
-                <li>Jamstack</li>
-                <li>SNSマーケティング</li>
-                <li>React</li>
-                <li>Splide</li>
-              </ul>
-            </div>
-          </aside>
+          <BlogArchiveSidebar />
         </Container>
       </div>
+      <Breadcrumb paths={[{ name: "ブログ" }]} />
     </>
   );
 }
