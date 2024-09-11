@@ -37,7 +37,7 @@ export default function SnsShare({ postUrl, title }) {
             rel="noopener noreferrer"
             className={`${styles.icon} ${styles.isLine}`}
           >
-            <Image src="/images/sns/icons8-line.svg" width={24} height={24} alt="LINEでシェア" />
+            <Image src="/images/sns/icon-line.svg" width={24} height={24} alt="LINEでシェア" />
           </a>
         </li>
         <li className={styles.btn}>
