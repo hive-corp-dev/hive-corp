@@ -110,12 +110,6 @@
   }
 }
 
-.select option {
-  &[value=""] {
-    color: red;
-  }
-}
-
 .textarea {
   min-height: 32rem;
   resize: vertical;
