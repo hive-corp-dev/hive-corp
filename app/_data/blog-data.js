@@ -13,6 +13,7 @@ export const BLOG_CATEGORIES = [
 export const BLOG_TAGS = [
   { slug: "useful-info", label: "お役立ち情報" },
   { slug: "marketing", label: "マーケティング" },
+  { slug: "jamstack", label: "Jamstack" },
 ];
 
 export const BLOG_CATEGORY_SLUGS = BLOG_CATEGORIES.map((category) => category.slug);

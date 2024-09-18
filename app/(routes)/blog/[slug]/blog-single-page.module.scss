@@ -17,9 +17,20 @@
   // align-items: flex-start; // これがあるとasideの中の特定のblockを追従できない
   gap: 8rem;
 
+  @include tab {
+    gap: 4rem;
+  }
+
+  @include blog-one-col {
+    flex-direction: column;
+    max-width: 80rem;
+    width: 100%;
+    margin: 0 auto;
+    gap: 8rem;
+  }
+
   @include sp {
     gap: 6.4rem;
-    flex-direction: column;
   }
 }
 

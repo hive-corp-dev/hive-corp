@@ -2,11 +2,24 @@
 
 .content {
   margin-top: 4rem;
-  line-height: 2;
 
   @include sp {
     font-size: 1.4rem;
   }
+
+  p,
+  ul,
+  ol,
+  a:not([class]) {
+    line-height: 2;
+  }
+
+  // strong {
+  //   background-image: linear-gradient(90deg, #f6ac0a, #f6ac0a);
+  //   background-size: 100% 0.3rem;
+  //   background-position: left bottom;
+  //   background-repeat: no-repeat;
+  // }
 
   h2 {
     font-size: 2.4rem;
@@ -58,16 +71,28 @@
   }
 
   ul {
+    background-color: #f9f9fc;
+    padding: 2.4rem;
+    border: 1px solid #efeff5;
+
+    @include sp {
+      padding: 1.6rem;
+    }
+
     li {
-      display: flex;
+      position: relative;
+      padding-left: 1em;
 
       &::before {
         content: "・";
+        position: absolute;
+        left: 0;
+        top: 0;
       }
     }
   }
 
-  a {
+  a:not([class]) {
     color: $c-link;
     text-decoration: underline;
     transition: opacity 0.3s;
@@ -76,6 +101,20 @@
       &:hover {
         opacity: 0.7;
       }
+    }
+  }
+
+  blockquote {
+    border-left: 0.4rem solid #efeff5;
+    padding: 0.8rem 2.4rem;
+
+    cite {
+      display: block;
+      font-size: 1.4rem;
+    }
+
+    & > * {
+      line-height: 1.5;
     }
   }
 
@@ -105,10 +144,28 @@
   }
 
   h4 {
-    margin-top: 4.8rem;
+    margin-top: 6.4rem;
 
     @include sp {
       margin-top: 4rem;
+    }
+  }
+
+  blockquote {
+    & > *:not(:first-child) {
+      margin-top: 0.8rem;
+    }
+  }
+
+  ul {
+    li {
+      &:not(:first-child) {
+        margin-top: 0.8rem;
+
+        @include sp {
+          margin-top: 0.4rem;
+        }
+      }
     }
   }
 }

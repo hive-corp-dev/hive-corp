@@ -48,7 +48,7 @@ export default function BlogPost({ params }) {
         <Container className={styles.inner}>
           <main className={styles.main}>
             <div className={styles.thumb}>
-              <Image src={thumbnail} width={1600} height={900} alt={title} />
+              <Image src={thumbnail} width={1600} height={900} alt={title} priority />
             </div>
             <MDX code={mdx} />
 

@@ -1,0 +1,29 @@
+@import "@sass-utils";
+
+.wrap {
+}
+
+.col {
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item {
+  width: 20rem;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.text {
+  font-size: 1.4rem;
+}
+
+.icon {
+  width: 10rem;
+}
