@@ -39,6 +39,13 @@ export default async function BlogArchivePage({ params }) {
                 <span className={openSans.className}>TAG - </span>
                 {getTagLabelBySlug(params.slug)}
               </div>
+              {/* if there's at least 1 post */}
+              {tagPosts.length === 0 && (
+                <div className={styles.noPost}>
+                  <p>まだ投稿がありません。</p>
+                </div>
+              )}
+
               <ul className={styles.list}>
                 {tagPosts.map((post) => {
                   return (

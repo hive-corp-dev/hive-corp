@@ -12,6 +12,7 @@ export const BLOG_CATEGORIES = [
 // 並べ替えは手動で行う
 export const BLOG_TAGS = [
   { slug: "useful-info", label: "お役立ち情報" },
+  { slug: "subscription", label: "サブスク" },
   { slug: "marketing", label: "マーケティング" },
   { slug: "jamstack", label: "Jamstack" },
 ];
