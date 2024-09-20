@@ -3,11 +3,12 @@ import styles from "./blog-mv.module.scss";
 import Container from "@/app/_components/common/container/container";
 import { IoFolderOutline } from "react-icons/io5";
 import { formatDate } from "@/app/_utils/date";
+import { PiClock, PiClockClockwise } from "react-icons/pi";
 import { getCategoryLabelBySlug, getCategoryPath, getTagLabelBySlug, getTagPath } from "@/app/_utils/blog";
 import { BsTags } from "react-icons/bs";
 import Link from "next/link";
 
-export default function BlogMv({ title, publishedAt, categorySlug, tagSlugs }) {
+export default function BlogMv({ title, publishedAt, modifiedAt, categorySlug, tagSlugs }) {
   const categoryLabel = getCategoryLabelBySlug(categorySlug);
 
   return (
@@ -31,7 +32,18 @@ export default function BlogMv({ title, publishedAt, categorySlug, tagSlugs }) {
               </li>
             ))}
           </ul>
-          <div className={`${styles.date} ${openSans.className}`}>{formatDate(publishedAt)}</div>
+          <div className={styles.dateWrap}>
+            <div className={`${styles.date} ${openSans.className}`}>
+              <PiClock />
+              {formatDate(publishedAt)}
+            </div>
+            {modifiedAt && (
+              <div className={`${styles.date} ${openSans.className}`}>
+                <PiClockClockwise />
+                {formatDate(modifiedAt)}
+              </div>
+            )}
+          </div>
         </div>
       </Container>
     </section>

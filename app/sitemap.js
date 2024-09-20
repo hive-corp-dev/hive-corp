@@ -38,7 +38,7 @@ export default function sitemap() {
   const blogPosts = allBlogPosts.map((post) => {
     return {
       url: `${HIVE_URL}/blog/${post._meta.path}`,
-      lastModified: new Date(post.publishedAt),
+      lastModified: new Date(post.modifiedAt) || new Date(post.publishedAt),
       changeFrequency: "monthly",
       priority: 0.7,
     };

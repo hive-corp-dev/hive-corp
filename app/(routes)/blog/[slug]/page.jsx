@@ -39,11 +39,11 @@ export const generateMetadata = ({ params }) => {
 export default function BlogPost({ params }) {
   const post = allBlogPosts.find((post) => post._meta.path === params.slug);
 
-  const { title, category, publishedAt, thumbnail, tags, mdx, author } = post;
+  const { title, category, publishedAt, modifiedAt, thumbnail, tags, mdx, author } = post;
 
   return (
     <div>
-      <BlogMv title={title} categorySlug={category} tagSlugs={tags} publishedAt={publishedAt} />
+      <BlogMv title={title} categorySlug={category} tagSlugs={tags} publishedAt={publishedAt} modifiedAt={modifiedAt} />
       <div className={styles.wrap}>
         <Container className={styles.inner}>
           <main className={styles.main}>

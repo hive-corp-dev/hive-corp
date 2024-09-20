@@ -25,6 +25,13 @@ const BlogPost = defineCollection({
       }
     }, z.date()), // Dateオブジェクトとしてバリデーション
     author: z.enum(["tatsuya", "roku", "takumi"]),
+    modifiedAt: z
+      .preprocess((arg) => {
+        if (typeof arg === "string" || arg instanceof Date) {
+          return new Date(arg); // 文字列またはDateオブジェクトをDateに変換
+        }
+      }, z.date())
+      .optional(), // Dateオブジェクトとしてバリデーション
   }),
   transform: async (document, context) => {
     // documentでエラー出てたのでchatgptで解決

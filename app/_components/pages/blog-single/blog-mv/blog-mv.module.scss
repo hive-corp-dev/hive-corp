@@ -50,7 +50,9 @@
 .info {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   margin-top: 2.4rem;
+  gap: 4rem;
 
   @include sp {
     flex-direction: column;
@@ -91,11 +93,23 @@
   }
 }
 
+.dateWrap {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.6rem;
+}
+
 .date {
   font-size: 1.4rem;
+  display: flex;
+  align-items: center;
 
   @include sp {
     margin-top: 5.6rem;
     text-align: right;
+  }
+
+  svg {
+    margin-right: 0.4rem;
   }
 }
