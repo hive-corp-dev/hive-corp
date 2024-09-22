@@ -45,6 +45,10 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 4rem;
 
+  @include blog-one-col {
+    grid-template-columns: 1fr;
+  }
+
   @include sp {
     grid-template-columns: 1fr;
   }

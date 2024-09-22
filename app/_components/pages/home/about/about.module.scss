@@ -1,7 +1,7 @@
 @import "@sass-utils";
 
 .section {
-  padding: 16rem 0;
+  padding: 16rem 0 0;
   background-image: linear-gradient(to right, $c-white 1px, #f8f8f8 1px);
   background-size: calc(100% / 6) 100%;
 
@@ -10,7 +10,7 @@
   }
 
   @include sp {
-    padding: 8rem 0;
+    padding: 8rem 0 0;
   }
 }
 

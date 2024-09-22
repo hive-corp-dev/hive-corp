@@ -3,6 +3,7 @@ import Mv from "../_components/pages/home/mv/mv";
 import Business from "../_components/pages/home/business/business";
 import About from "../_components/pages/home/about/about";
 import Service from "../_components/pages/home/service/service";
+import Blog from "../_components/pages/home/blog/blog";
 import Contact from "../_components/pages/home/contact/contact";
 import { TOP_METADATA } from "../_data/metadata";
 import { outputMetadata } from "../_utils/outputMetadata";
@@ -16,6 +17,7 @@ export default function HomePage() {
       <Business />
       <Service />
       <About />
+      <Blog />
       <Contact />
     </main>
   );

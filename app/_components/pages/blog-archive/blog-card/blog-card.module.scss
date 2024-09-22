@@ -54,6 +54,9 @@
 
 .body {
   padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .info {
@@ -83,6 +86,10 @@
   font-size: 1.6rem;
   margin-top: 0.8rem;
   min-height: 3em;
+
+  @include sp {
+    min-height: 0;
+  }
 }
 
 .desc {
@@ -93,13 +100,14 @@
   -webkit-line-clamp: 2;
   overflow: hidden;
   margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
 }
 
 .tagList {
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem 1.6rem;
-  margin-top: 0.8rem;
+  margin-top: auto;
 }
 
 .tagLink {
