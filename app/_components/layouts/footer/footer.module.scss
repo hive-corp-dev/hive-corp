@@ -152,7 +152,7 @@
 
 .banners {
   display: flex;
-  gap: 1.6rem;
+  gap: 2.4rem;
   margin-top: 1.6rem;
 
   @include sp {
@@ -162,14 +162,11 @@
 }
 
 .banner {
-  width: 18rem;
-  border-radius: 0.4rem;
-  overflow: hidden;
   transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
 
   @include sp {
-    width: 50%;
-    max-width: 20rem;
   }
 
   @include hover {
@@ -177,6 +174,26 @@
       opacity: 0.8;
     }
   }
+}
+
+.bannerHead {
+  font-size: 1.2rem;
+  font-weight: 500;
+
+  @include sp {
+    text-align: center;
+  }
+}
+
+.bannerText {
+  font-size: 1.1rem;
+}
+
+.bannerImg {
+  width: 20rem;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  margin-top: 0.8rem;
 }
 
 .copyWrap {

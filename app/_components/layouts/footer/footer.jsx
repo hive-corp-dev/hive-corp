@@ -61,13 +61,27 @@ export default function Footer() {
 
           <div className={styles.subContent}>
             <div className={styles.bannerWrap}>
-              <p className={styles.bannerText}>運営中のサービス</p>
+              <p className={styles.bannerHead}>運営中のサービス</p>
               <div className={styles.banners}>
-                <a href={`${JAM_URL}`} target="_blank" rel="noopener" className={styles.banner}>
-                  <Image src="/images/jam-banner.png" alt="JAM banner" width={200} height={60} />
-                </a>
                 <a href={`${CODEHIVE_URL}`} target="_blank" rel="noopener" className={styles.banner}>
-                  <Image src="/images/codehive-banner.png" alt="JAM banner" width={200} height={60} />
+                  <span className={styles.bannerText}>コーディング代行サービス</span>
+                  <Image
+                    className={styles.bannerImg}
+                    src="/images/codehive-banner.png"
+                    alt="CodeHive"
+                    width={200}
+                    height={60}
+                  />
+                </a>
+                <a href={`${JAM_URL}`} target="_blank" rel="noopener" className={styles.banner}>
+                  <span className={styles.bannerText}>サブスク型ホームページ制作サービス</span>
+                  <Image
+                    className={styles.bannerImg}
+                    src="/images/jam-banner.png"
+                    alt="Jam Factory"
+                    width={200}
+                    height={60}
+                  />
                 </a>
               </div>
             </div>

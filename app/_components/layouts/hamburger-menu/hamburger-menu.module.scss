@@ -87,7 +87,7 @@
   margin-top: 6.4rem;
 }
 
-.bannerText {
+.bannerHead {
   font-size: 1.4rem;
   letter-spacing: 0.08em;
   font-weight: 500;
@@ -102,16 +102,22 @@
   margin-top: 1.6rem;
 }
 
-.banner {
-  width: 100%;
-  max-width: 20rem;
-}
-
 .bannerLink {
   display: flex;
+  flex-direction: column;
+  transition: all 0.3s;
+}
+
+.bannerText {
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.bannerImg {
+  width: 20rem;
   border-radius: 0.4rem;
   overflow: hidden;
-  transition: all 0.3s;
+  margin-top: 0.8rem;
 }
 
 .subLink {

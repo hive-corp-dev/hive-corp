@@ -54,16 +54,30 @@ export default function HamburgerMenu() {
         </div>
 
         <div className={styles.bannerWrap}>
-          <p className={styles.bannerText}>運営中のサービス</p>
+          <p className={styles.bannerHead}>運営中のサービス</p>
           <ul className={styles.banners}>
             <li className={styles.banner}>
-              <a href={`${JAM_URL}`} target="_blank" rel="noopener" className={styles.bannerLink}>
-                <Image src="/images/jam-banner.png" alt="JAM banner" width={200} height={60} />
+              <a href={`${CODEHIVE_URL}`} target="_blank" rel="noopener" className={styles.bannerLink}>
+                <span className={styles.bannerText}>コーディング代行サービス</span>
+                <Image
+                  className={styles.bannerImg}
+                  src="/images/codehive-banner.png"
+                  alt="CodeHive"
+                  width={200}
+                  height={60}
+                />
               </a>
             </li>
             <li className={styles.banner}>
-              <a href={`${CODEHIVE_URL}`} target="_blank" rel="noopener" className={styles.bannerLink}>
-                <Image src="/images/codehive-banner.png" alt="JAM banner" width={200} height={60} />
+              <a href={`${JAM_URL}`} target="_blank" rel="noopener" className={styles.bannerLink}>
+                <span className={styles.bannerText}>サブスク型ホームページ制作サービス</span>
+                <Image
+                  className={styles.bannerImg}
+                  src="/images/jam-banner.png"
+                  alt="Jam Factory"
+                  width={200}
+                  height={60}
+                />
               </a>
             </li>
           </ul>
