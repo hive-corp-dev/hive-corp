@@ -5,6 +5,7 @@ import TocArticle from "../toc-article/toc-article";
 import LinkCard from "../blog-parts/link-card/link-card";
 import Spacer from "../blog-parts/spacer/spacer";
 import JamstackSsrComparison from "../blog-parts/one-off/jamstack-ssr-comparison/jamstack-ssr-comparison";
+import SubscriptionPayment from "../blog-parts/one-off/subscription-payment/subscription-payment";
 import styles from "./mdx-content.module.scss";
 
 export default function MDX({ code }) {
@@ -22,6 +23,7 @@ export default function MDX({ code }) {
 
           // one off components
           JamstackSsrComparison,
+          SubscriptionPayment,
         }}
       />
     </article>

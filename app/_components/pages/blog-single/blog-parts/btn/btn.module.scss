@@ -23,4 +23,15 @@
       color: $c-black;
     }
   }
+
+  &.isJam {
+    border-radius: 4rem;
+
+    @include hover {
+      &:hover {
+        background-color: #1075e2;
+        color: $c-white;
+      }
+    }
+  }
 }
