@@ -2,6 +2,12 @@ import { defineCollection, defineConfig } from "@content-collections/core";
 import { compileMDX } from "@content-collections/mdx";
 import { BLOG_CATEGORY_SLUGS, BLOG_TAG_SLUGS } from "./app/_data/blog-data";
 import rehypeSlug from "rehype-slug";
+import rehypePrettyCode from "rehype-pretty-code";
+
+const rehypePrettyCodeOptions = {
+  theme: "slack-dark",
+  keepBackground: false,
+};
 
 const BlogPost = defineCollection({
   name: "BlogPost",
@@ -41,7 +47,7 @@ const BlogPost = defineCollection({
     };
 
     const mdx = await compileMDX(context, completeDocument, {
-      rehypePlugins: [rehypeSlug],
+      rehypePlugins: [rehypeSlug, [rehypePrettyCode, rehypePrettyCodeOptions]],
     });
 
     return {

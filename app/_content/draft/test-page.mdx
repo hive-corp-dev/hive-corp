@@ -1,0 +1,66 @@
+---
+title: "パーツ確認用テストページ"
+description: "公開はせず、draftディレクトリで管理"
+thumbnail: "/images/blog/jamstack-pros-cons/thumb.png"
+category: "website"
+tags: ["jamstack"]
+publishedAt: "2024-09-18T10:00:00"
+modifiedAt: "2024-09-19T22:00:00"
+author: "tatsuya"
+---
+
+テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。
+
+<CodeHead name="style.css" lang="css" />
+
+```css showLineNumbers {1}
+.sample {
+  color: red;
+}
+```
+
+<NextImage
+  src="/images/blog/jamstack-pros-cons/thumb.png"
+  alt="Usage statistics and market shares of content management systems"
+  width={1036}
+  height={520}
+  hasBorder
+>
+  <OuterLink href="https://w3techs.com/technologies/overview/content_management">{`Usage statistics and market shares of content management systems | W3Techs`}</OuterLink>
+</NextImage>
+
+<NextImage
+  src="/images/blog/jamstack-pros-cons/thumb.png"
+  alt="Usage statistics and market shares of content management systems"
+  width={1036}
+  height={520}
+>
+  Usage statistics and market shares of content management systems | W3Techs
+</NextImage>
+
+これはダミーテキストです。<OuterLink href="https://w3techs.com/technologies/overview/content_management">外部リンク</OuterLink>の見た目テスト。
+
+<InfoBox type="success">これはインフォBOXです。</InfoBox>
+
+<InfoBox type="warning">
+  これはインフォBOXです。ここにダミーテキストが入ります。これはインフォBOXです。ここにダミーテキストが入ります。これはインフォBOXです。ここにダミーテキストが入ります。
+</InfoBox>
+
+<p>
+  <strong>これは太字です。</strong>
+  {`ここにダミーテキストが入ります。これはインフォBOXです。ここにダミーテキストが入ります。ここにダミーテキストが入ります。これはインフォBOXです。ここにダミーテキストが入ります。ここにダミーテキストが入ります。これはインフォBOXです。ここにダミーテキストが入ります。`}
+</p>
+
+<CodeHead name="index.jsx" lang="jsx" />
+
+```jsx showLineNumbers
+import styles from "./highlight.module.scss";
+
+export default function Highlight({ children, type }) {
+  const additionalClass = type === "warning" ? styles.warning : null;
+
+  return <span className={`${styles.highlight} ${additionalClass}`}>{children}</span>;
+}
+```
+
+ここにダミーテキストが入ります。これはインフォBOXです。ここにダミーテキストが入ります。<Highlight type="warning">これは赤字テキストです。</Highlight>ここにダミーテキストが入ります。これはインフォBOXです。ここにダミーテキストが入ります。ここにダミーテキストが入ります。これはインフォBOXです。ここにダミーテキストが入ります。

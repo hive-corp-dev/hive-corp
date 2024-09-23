@@ -1,0 +1,73 @@
+@import "@sass-utils";
+
+.pre {
+  /* stylist preferences */
+  padding-top: 1rem;
+  padding-bottom: 1.2rem;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  overflow-x: auto;
+
+  @include sp {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    line-height: 1.5;
+  }
+
+  &::-webkit-scrollbar {
+    scrollbar-width: 0.5rem;
+    height: 0.8rem;
+    background: #1b242e;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 0.6rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #1b242e;
+    border-radius: 0.6rem;
+  }
+}
+
+.copy {
+  position: absolute;
+  right: 1.6rem;
+  top: 1.6rem;
+  border: 1px solid rgba($c-white, 0.2);
+  background-color: transparent;
+  color: $c-white;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  backdrop-filter: blur(0.5rem);
+  font-size: 1.6rem;
+  transition: all 0.3s;
+
+  @include sp {
+    top: 1.2rem;
+    right: 1.2rem;
+  }
+
+  &:hover {
+    background-color: rgba($c-white, 0.2);
+  }
+
+  &.copy_done {
+    background-color: #00cd10;
+  }
+}
+
+.icon_done {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon_copy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

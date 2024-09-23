@@ -1,0 +1,32 @@
+@import "@sass-utils";
+
+.figure {
+  margin: 4rem 0 !important;
+}
+
+.img {
+  width: 100%;
+  height: auto;
+}
+
+.img_border {
+  border: 0.1rem solid #f8f8f8;
+}
+
+.img_shadow {
+  box-shadow: 0 0 12px rgba($c-black, 0.3);
+}
+
+.caption {
+  width: 80%;
+  text-align: center;
+  color: #687387;
+  font-size: 1.4rem;
+  margin: 0.75em auto 0;
+
+  @include sp {
+    font-size: 1.2rem;
+    line-height: 1.75;
+    width: 90%;
+  }
+}

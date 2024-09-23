@@ -1,0 +1,106 @@
+@import "@sass-utils";
+
+.code_head {
+  padding: 1.6rem;
+  font-family: $font-editor;
+  font-size: 1.3rem;
+  margin-top: 3.2rem;
+  line-height: 1;
+  color: rgba($c-white, 0.8);
+  border: 0.1rem solid #334155;
+  background-color: #1b242e;
+  border-radius: 0.8rem 0.8rem 0 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  @include sp {
+    padding: 1.2rem;
+  }
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  margin-right: 1.2rem;
+
+  @include sp {
+    display: none;
+  }
+
+  span,
+  &::before,
+  &::after {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 0.6rem;
+    display: block;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+  }
+
+  &::before {
+    background-color: #ff5f57;
+  }
+
+  span {
+    background-color: #febc2e;
+  }
+
+  &::after {
+    background-color: #28c840;
+  }
+}
+
+.text_wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+  font-smoothing: auto;
+  -webkit-font-smoothing: auto;
+}
+
+.lang_wrap {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.icon {
+  font-size: 1.4rem;
+  margin-right: 0.4rem;
+
+  &[data-lang="js"] {
+    color: #ffd600;
+  }
+
+  &[data-lang="html"] {
+    font-size: 1.6rem;
+    color: #ff8c0b;
+  }
+
+  &[data-lang="css"] {
+    color: #2ea8ff;
+  }
+
+  &[data-lang="scss"] {
+    color: #cc6699;
+  }
+
+  &[data-lang="jsx"] {
+    color: #82f3ff;
+  }
+
+  &[data-lang="md"] {
+    margin-right: 0.6rem;
+  }
+
+  &[data-lang="mdx"] {
+    margin-right: 0.6rem;
+  }
+}
