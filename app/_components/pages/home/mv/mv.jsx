@@ -15,7 +15,7 @@ export default function Mv() {
             <span>一貫してトータルサポート</span>
           </h1>
 
-          <Image className={styles.img} src="/images/mv-neww.png" width={680} height={680} alt="" priority />
+          <Image className={styles.img} src="/images/mv.png" width={680} height={680} alt="" priority />
 
           <p className={styles.text}>
             Webサイトを作るだけでなく、成果を出すための
