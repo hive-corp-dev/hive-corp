@@ -4,15 +4,19 @@ import Container from "@/app/_components/common/container/container";
 import BlogCard from "@/app/_components/pages/blog-archive/blog-card/blog-card";
 import { openSans } from "@/app/_utils/fonts";
 import { BLOG_CATEGORY_PATH, BLOG_TAG_PATH, BLOG_TAGS } from "@/app/_data/blog-data";
-import { getTagLabelBySlug, getTagPath } from "@/app/_utils/blog";
+import { getTagLabelBySlug, getTagPath, getTagsWithPosts } from "@/app/_utils/blog";
 import { postsSortedByDate } from "@/app/_utils/blog";
 import BlogArchiveSidebar from "@/app/_components/pages/blog-archive/blog-archive-sidebar/blog-archive-sidebar";
 import Breadcrumb from "@/app/_components/common/breadcrumb/breadcrumb";
 import { outputMetadata } from "@/app/_utils/outputMetadata";
 import { BLOG_ARCHIVE_METADATA } from "@/app/_data/metadata";
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
-  return BLOG_TAGS.map((tag) => ({
+  const tagsWithPosts = getTagsWithPosts();
+
+  return tagsWithPosts.map((tag) => ({
     slug: tag.slug,
   }));
 }

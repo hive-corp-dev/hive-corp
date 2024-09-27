@@ -3,7 +3,7 @@ export const BLOG_TAG_PATH = "/blog/tag/";
 
 export const BLOG_CATEGORIES = [
   { slug: "website", label: "ホームページ" },
-  // { slug: "tech-topics", label: "技術トピック" },
+  { slug: "tech-topics", label: "技術トピック" },
   // { slug: "seo", label: "SEO対策" },
   // { slug: "meo", label: "MEO対策" },
   // { slug: "sns", label: "SNS運用" },
@@ -15,6 +15,7 @@ export const BLOG_TAGS = [
   { slug: "subscription", label: "サブスク" },
   { slug: "marketing", label: "マーケティング" },
   { slug: "jamstack", label: "Jamstack" },
+  { slug: "seo", label: "SEO" },
 ];
 
 export const BLOG_CATEGORY_SLUGS = BLOG_CATEGORIES.map((category) => category.slug);

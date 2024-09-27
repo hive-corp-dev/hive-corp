@@ -4,7 +4,7 @@ import Container from "@/app/_components/common/container/container";
 import BlogCard from "@/app/_components/pages/blog-archive/blog-card/blog-card";
 import { openSans } from "@/app/_utils/fonts";
 import { BLOG_CATEGORIES } from "@/app/_data/blog-data";
-import { getCategoryLabelBySlug, getCategoryPath } from "@/app/_utils/blog";
+import { getCategoryLabelBySlug, getCategoryPath, getCategoriesWithPosts } from "@/app/_utils/blog";
 import { postsSortedByDate } from "@/app/_utils/blog";
 import BlogArchiveSidebar from "@/app/_components/pages/blog-archive/blog-archive-sidebar/blog-archive-sidebar";
 import Breadcrumb from "@/app/_components/common/breadcrumb/breadcrumb";
@@ -12,8 +12,12 @@ import { outputMetadata } from "@/app/_utils/outputMetadata";
 import { BLOG_ARCHIVE_METADATA } from "@/app/_data/metadata";
 import { BLOG_CATEGORY_PATH } from "@/app/_data/blog-data";
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
-  return BLOG_CATEGORIES.map((category) => ({
+  const categoriesWithPosts = getCategoriesWithPosts();
+
+  return categoriesWithPosts.map((category) => ({
     slug: category.slug,
   }));
 }

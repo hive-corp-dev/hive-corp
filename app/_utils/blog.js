@@ -28,3 +28,21 @@ export const getCategoryPath = (slug) => {
 export const getTagPath = (slug) => {
   return `${BLOG_TAG_PATH}${slug}`;
 };
+
+// 少なくとも1つの投稿を持つタグを取得
+export const getTagsWithPosts = () => {
+  const tagSlugsWithPosts = BLOG_TAGS.filter((tag) => {
+    return allBlogPosts.some((post) => post.tags.includes(tag.slug));
+  });
+
+  return tagSlugsWithPosts;
+};
+
+// 少なくとも1つの投稿を持つカテゴリーを取得
+export const getCategoriesWithPosts = () => {
+  const categorySlugsWithPosts = BLOG_CATEGORIES.filter((category) => {
+    return allBlogPosts.some((post) => post.category === category.slug);
+  });
+
+  return categorySlugsWithPosts;
+};

@@ -3,17 +3,26 @@ import { BsTags } from "react-icons/bs";
 import { IoFolderOutline } from "react-icons/io5";
 import Link from "next/link";
 import styles from "./blog-single-sidebar.module.scss";
-import { BLOG_CATEGORIES, BLOG_TAGS } from "@/app/_data/blog-data";
-import { getCategoryPath, getPostCountByCategorySlug, getTagPath } from "@/app/_utils/blog";
+import { BLOG_CATEGORIES } from "@/app/_data/blog-data";
+import {
+  getCategoryPath,
+  getPostCountByCategorySlug,
+  getTagPath,
+  getTagsWithPosts,
+  getCategoriesWithPosts,
+} from "@/app/_utils/blog";
 import Toc from "../toc/toc";
 
 export default function BlogSingleSidebar() {
+  const categoriesWithPosts = getCategoriesWithPosts();
+  const tagsWithPosts = getTagsWithPosts();
+
   return (
     <aside className={styles.sidebar}>
       <div className={styles.sidebarBlock}>
         <div className={`${styles.sidebarTitle} ${openSans.className}`}>CATEGORY</div>
         <ul className={styles.catList}>
-          {BLOG_CATEGORIES.map((category) => {
+          {categoriesWithPosts.map((category) => {
             const count = getPostCountByCategorySlug(category.slug);
 
             return (
@@ -28,41 +37,12 @@ export default function BlogSingleSidebar() {
               </li>
             );
           })}
-
-          {/* <li>
-            <div className={styles.catName}>
-              <IoFolderOutline />
-              技術トピック
-            </div>
-            <span className={openSans.className}>12</span>
-          </li>
-          <li>
-            <div className={styles.catName}>
-              <IoFolderOutline />
-              SEO対策
-            </div>
-            <span className={openSans.className}>4</span>
-          </li>
-          <li>
-            <div className={styles.catName}>
-              <IoFolderOutline />
-              MEO対策
-            </div>
-            <span className={openSans.className}>4</span>
-          </li>
-          <li>
-            <div className={styles.catName}>
-              <IoFolderOutline />
-              SNS運用
-            </div>
-            <span className={openSans.className}>1</span>
-          </li> */}
         </ul>
       </div>
       <div className={`${styles.sidebarBlock}`}>
         <div className={`${styles.sidebarTitle} ${openSans.className}`}>TAG</div>
         <ul className={styles.tagList}>
-          {BLOG_TAGS.map((tag) => (
+          {tagsWithPosts.map((tag) => (
             <li key={tag.slug}>
               <Link className={styles.tagLink} href={getTagPath(tag.slug)}>
                 <BsTags />
