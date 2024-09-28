@@ -54,7 +54,7 @@ export default async function BlogArchivePage({ params }) {
                 {tagPosts.map((post) => {
                   return (
                     <li key={post._meta.path} className={styles.item}>
-                      <BlogCard postData={post} />
+                      <BlogCard postData={post} isHorizontal={true} />
                     </li>
                   );
                 })}

@@ -7,7 +7,7 @@ $bp-hamburger: 1180px;
 $bp-tab: 1100px;
 $bp-blog-one-col: 1000px;
 $bp-sp: 768px;
-$bp-sp-s: 550px;
+$bp-sp-s: 500px;
 
 @mixin pc-l {
   @media (min-width: ($bp-pc-large)) {

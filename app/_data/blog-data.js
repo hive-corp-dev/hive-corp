@@ -14,8 +14,10 @@ export const BLOG_TAGS = [
   { slug: "useful-info", label: "お役立ち情報" },
   { slug: "subscription", label: "サブスク" },
   { slug: "marketing", label: "マーケティング" },
+  { slug: "cms", label: "CMS" },
   { slug: "jamstack", label: "Jamstack" },
   { slug: "seo", label: "SEO" },
+  { slug: "wordpress", label: "WordPress" },
 ];
 
 export const BLOG_CATEGORY_SLUGS = BLOG_CATEGORIES.map((category) => category.slug);

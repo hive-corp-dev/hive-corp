@@ -11,14 +11,6 @@ author: "tatsuya"
 
 テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。テストテキストです。
 
-<CodeHead name="style.css" lang="css" />
-
-```css showLineNumbers {1}
-.sample {
-  color: red;
-}
-```
-
 <NextImage
   src="/images/blog/jamstack-pros-cons/thumb.png"
   alt="Usage statistics and market shares of content management systems"
@@ -53,7 +45,7 @@ author: "tatsuya"
 
 <CodeHead name="index.jsx" lang="jsx" />
 
-```jsx showLineNumbers
+```jsx showLineNumbers {1-3}
 import styles from "./highlight.module.scss";
 
 export default function Highlight({ children, type }) {
@@ -64,3 +56,7 @@ export default function Highlight({ children, type }) {
 ```
 
 ここにダミーテキストが入ります。これはインフォBOXです。ここにダミーテキストが入ります。<Highlight type="warning">これは赤字テキストです。</Highlight>ここにダミーテキストが入ります。これはインフォBOXです。ここにダミーテキストが入ります。ここにダミーテキストが入ります。これはインフォBOXです。ここにダミーテキストが入ります。
+
+```
+
+```

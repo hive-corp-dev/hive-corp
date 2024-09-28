@@ -5,10 +5,11 @@ import styles from "./blog-card.module.scss";
 import { openSans } from "@/app/_utils/fonts";
 import { IoFolderOutline } from "react-icons/io5";
 import { BsTags } from "react-icons/bs";
+import { PiClock } from "react-icons/pi";
 
 import { getCategoryLabelBySlug, getTagLabelBySlug } from "@/app/_utils/blog";
 
-export default function BlogCard({ postData }) {
+export default function BlogCard({ postData, isHorizontal }) {
   const {
     title,
     description,
@@ -20,7 +21,7 @@ export default function BlogCard({ postData }) {
   } = postData;
 
   return (
-    <Link href={`/blog/${path}`} className={styles.link}>
+    <Link href={`/blog/${path}`} className={`${styles.link} ${isHorizontal && styles.isHorizontal}`}>
       <div className={styles.thumb}>
         <Image src={thumbnail} width={1600} height={900} alt={title} />
       </div>
@@ -30,10 +31,13 @@ export default function BlogCard({ postData }) {
             <IoFolderOutline />
             {getCategoryLabelBySlug(category)}
           </div>
-          <div className={`${styles.time} ${openSans.className}`}>{formatDate(publishedAt)}</div>
+          <div className={`${styles.time} ${openSans.className}`}>
+            <PiClock />
+            {formatDate(publishedAt)}
+          </div>
         </div>
         <h2 className={styles.title}>{title}</h2>
-        <p className={styles.desc}>{description}</p>
+        {!isHorizontal && <p className={styles.desc}>{description}</p>}
         <ul className={styles.tagList}>
           {tags.map((tag) => (
             <li key={tag}>

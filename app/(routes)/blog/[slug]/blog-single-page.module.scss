@@ -16,6 +16,7 @@
   justify-content: space-between;
   // align-items: flex-start; // これがあるとasideの中の特定のblockを追従できない
   gap: 8rem;
+  max-width: 116rem;
 
   @include tab {
     gap: 4rem;
@@ -36,6 +37,7 @@
 
 .main {
   flex-grow: 1;
+  max-width: 76rem;
 }
 
 .archive {

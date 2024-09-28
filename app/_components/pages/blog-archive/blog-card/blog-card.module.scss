@@ -80,6 +80,12 @@
   font-size: 1.3rem;
   font-weight: 500;
   opacity: 0.6;
+  display: flex;
+  align-items: center;
+
+  svg {
+    margin-right: 0.4rem;
+  }
 }
 
 .title {
@@ -101,6 +107,7 @@
   overflow: hidden;
   margin-top: 0.8rem;
   margin-bottom: 0.8rem;
+  opacity: 0.7;
 }
 
 .tagList {
@@ -118,5 +125,91 @@
   svg {
     margin-right: 0.4rem;
     transform: translateY(0.1rem);
+  }
+}
+
+.link.isHorizontal {
+  flex-direction: row;
+  border: none;
+
+  @include sp-s {
+    flex-direction: column;
+  }
+
+  .body {
+    padding: 0 2.4rem;
+
+    @include sp-s {
+      padding: 1.6rem 0 0;
+    }
+  }
+
+  .thumb {
+    width: 32%;
+    min-width: 24rem;
+    flex-shrink: 0;
+
+    @include sp {
+      width: 32%;
+      min-width: 0;
+    }
+
+    @include sp-s {
+      width: 100%;
+    }
+
+    img {
+      position: static;
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .info {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1.6rem;
+  }
+
+  .cat {
+    @include sp {
+      font-size: 1.2rem;
+    }
+  }
+
+  .time {
+    font-weight: 400;
+    opacity: 1;
+    transform: translateY(0.1rem);
+
+    @include sp {
+      font-size: 1.2rem;
+    }
+  }
+
+  .title {
+    @include sp {
+      font-size: 1.4rem;
+    }
+  }
+
+  .desc {
+    display: none;
+  }
+
+  .tagList {
+    margin-top: 1.6rem;
+
+    @include sp {
+      margin-top: 0.8rem;
+    }
+  }
+
+  .tagLink {
+    @include sp {
+      font-size: 1.1rem;
+    }
   }
 }

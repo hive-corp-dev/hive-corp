@@ -8,13 +8,28 @@
   justify-content: flex-start;
   gap: 6.4rem;
 
+  @include blog-one-col {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   @include sp {
+    flex-direction: column;
     width: 100%;
     gap: 4rem;
   }
 }
 
 .sidebarBlock {
+  @include blog-one-col {
+    width: 50%;
+  }
+
+  @include sp {
+    width: 100%;
+  }
+
   &.isSticky {
     position: sticky;
     top: 10rem;

@@ -14,6 +14,15 @@
   display: flex;
   justify-content: space-between;
   gap: 6rem;
+  max-width: 116rem;
+
+  @include blog-one-col {
+    flex-direction: column;
+    max-width: 80rem;
+    width: 100%;
+    margin: 0 auto;
+    gap: 8rem;
+  }
 
   @include sp {
     flex-direction: column;
@@ -42,16 +51,7 @@
 
 .list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   gap: 4rem;
-
-  @include blog-one-col {
-    grid-template-columns: 1fr;
-  }
-
-  @include sp {
-    grid-template-columns: 1fr;
-  }
 }
 
 .item {

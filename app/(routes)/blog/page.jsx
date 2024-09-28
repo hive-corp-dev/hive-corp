@@ -29,7 +29,7 @@ export default async function BlogArchivePage() {
                 {postsSortedByDate.map((post) => {
                   return (
                     <li key={post._meta.path} className={styles.item}>
-                      <BlogCard postData={post} />
+                      <BlogCard postData={post} isHorizontal={true} />
                     </li>
                   );
                 })}
