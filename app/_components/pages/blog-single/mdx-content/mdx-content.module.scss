@@ -107,7 +107,7 @@
     }
   }
 
-  ol {
+  ol:not([class]) {
     background-color: #f9f9fc;
     padding: 2.4rem;
     border: 1px solid #efeff5;
@@ -250,13 +250,19 @@
   }
 
   .code {
-    font-size: 0.875rem;
-    margin: 0 4rem;
+    font-family: $font-editor;
+    font-weight: 500;
+    font-size: 0.875em;
+    margin: 0 0.4rem;
     padding: 0.3rem 0.6rem;
     border-radius: 0.4rem;
+    background-color: #fff;
+    border: 0.1rem solid #e8edf2;
     display: inline;
     line-height: 1.2;
+    letter-spacing: 0;
     align-self: center;
+    color: #1b85ff;
   }
 
   // margins
@@ -299,7 +305,7 @@
   }
 
   ul,
-  ol {
+  ol:not([class]) {
     li {
       &:not(:first-child) {
         margin-top: 0.8rem;

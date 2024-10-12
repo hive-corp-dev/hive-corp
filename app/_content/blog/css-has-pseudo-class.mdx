@@ -1,0 +1,632 @@
+---
+title: "CSSの擬似クラス:has()とは？メリットや具体的な使用例を解説"
+description: "WordPressとは、世界で最も人気のあるコンテンツ管理システムです。WordPressのメリットやデメリット、またWordPress以外の選択肢であるヘッドレスCMSについて説明します。"
+thumbnail: "/images/blog/css-has-pseudo-class/thumb.png"
+category: "tech-topics"
+tags: ["css"]
+publishedAt: "2024-10-12T11:30:00"
+author: "tatsuya"
+---
+
+皆さんはCSSの`:has()`擬似クラスをご存知でしょうか？
+
+2023年12月に主要ブラウザでのサポートが完了した、比較的新しめの機能ですが、
+
+- `:has()`にはどんなメリットがあるの？
+- `:has()`は具体的にどんな場面で使用できるの？
+
+と疑問に思われている方もいるのではないでしょうか。
+
+そこで今回の記事では、`:has()`についての説明やメリット、実際の案件で使用できる具体例について解説します。
+
+<TocArticle />
+
+## 擬似クラス:has()の基本情報
+
+まずは、`:has()`の基本的な情報から説明していきます。
+
+`:has()`は、CSSの中では"擬似クラス"の一つとして分類されます。
+
+擬似クラスとは、選択した要素の特定の状態を指定するためのもので、`:hover`や`:nth-child()`などが代表的ですね。
+
+<Spacer />
+
+`:has()`は、**要素が特定の子要素や隣接要素を持っているかどうかを条件に、親要素にスタイルを適用できるもの**です。
+
+これまでのCSSでは、スタイルの適用は親要素から子要素への一方向的なものに限定されていました。
+
+しかし`:has()`を利用することで、**子孫要素や隣接要素に応じて親要素のスタイルを変更することが可能**になります。
+
+## :has()の基本構文
+
+ここでは、`:has()`の基本的な構文を見ていきましょう。
+
+### 親要素の子孫要素によってスタイルを適用する場合
+
+まずは、基本的な形から説明していきます。
+
+<CodeHead lang="css" />
+
+```css
+/* .cardの子孫要素にimgタグがある場合は、.cardにスタイルを適用 */
+.card:has(img) {
+  display: flex;
+}
+```
+
+このコードでは、`.card`要素の子孫要素に`img`タグがある場合、スタイルを適用するという意味になります。
+
+<InfoBox type="success">
+  子孫要素とは、ある要素の内部に含まれている全ての要素を指します。これには、直下の小要素だけでなく、孫要素やさらに入れ子になっている要素も含まれます。
+</InfoBox>
+
+### 親要素の直下の子要素によってスタイルを適用する場合
+
+次に、子孫要素ではなく直下の子要素に応じてスタイルを適用する場合を見ていきましょう。
+
+<CodeHead lang="css" />
+
+```css
+/* .cardの直下の子要素にimgタグがある場合は、.cardにスタイルを適用 */
+.card:has(> img) {
+  display: flex;
+}
+```
+
+こちらのコードでは、`.card`の直下の要素に`img`タグがある場合、スタイルを適用するという意味になります。
+
+`:has`の条件式に`>`（子結合子）を使用することで、直下の要素に限定することが可能です。
+
+### 隣接する要素によってスタイルを適用する場合
+
+続いては子要素や子孫要素ではなく、隣接する要素に応じてスタイルを適用する場合を見ていきましょう。
+
+<CodeHead lang="css" />
+
+```css
+/* :has()と+（隣接結合子）を併用する場合 */
+/* h1タグの直後にimgタグがある場合は、h1タグにスタイルを適用 */
+h1:has(+ img) {
+  margin-bottom: 1rem;
+}
+
+/* +（隣接結合子）のみの場合 */
+/* h1タグの直後にimgタグがある場合は、imgタグにスタイルを適用 */
+h1 + img {
+  margin-top: 1rem;
+}
+```
+
+このコードでは、`h1`タグの直後に`img`タグがある場合、`h1`にスタイルを適用するという意味になります。
+
+`:has`の条件式に`+`（隣接結合子）を使用することで、隣接する要素に限定することが可能です。
+
+ここで注目すべきは、`img`ではなく`h1`にスタイルが適用されるということですね。
+
+<Spacer />
+
+似たようなパターンとして、隣接結合子のみを使用した場合も併せて記載しています。
+
+- `:has()`と`+`を併用する場合：最初の要素にスタイルを適用
+- `+`のみの場合：後続の要素にスタイルを適用
+
+まとめると、上記のようになります。
+
+## :has()を使うことによるメリット
+
+`:has()`の基本的な情報を紹介してきましたが、ここからは実際にどのようなメリットがあるのかを見ていきましょう。
+
+### メリット1. 余分なクラスを作成する必要がなくなる
+
+`:has()`を使用することで、**余分なクラスを作成することが不要になる**場合があります。
+
+ここでは、よくある記事リンクカードを例として、サムネイル画像がある場合、ない場合でスタイルを分ける方法を見てみましょう。
+
+- サムネイル画像がある場合は、`display: flex`を追加する
+- サムネイル画像がない場合は、何も追加しない
+
+#### :has()を使用しない場合
+
+`:has()`を使用せずにサムネイル画像の有無によってスタイルを分けるには、サムネイル画像がある場合に特定のクラスを追加する必要があります。
+
+<CodeHead lang="html" />
+
+```html showLineNumbers {2}
+<!-- 画像ありの場合 -->
+<a class="card card--has-thumbnail">
+  <div class="card__thumbnail">
+    <img src="thumbnail.jpg" alt="サムネイル画像" />
+  </div>
+  <div class="card__content">
+    <!-- ここにコンテンツが入ります -->
+  </div>
+</a>
+
+<!-- 画像なしの場合 -->
+<a class="card">
+  <div class="card__content">
+    <!-- ここにコンテンツが入ります -->
+  </div>
+</a>
+```
+
+ここでは、サムネイル画像がある`.card`要素に`.card--has-thumbnail`クラスを追加しています。
+
+CSSには、以下のように追加分のクラスのスタイリングを記述することになります。
+
+<CodeHead lang="css" />
+
+```css
+.card {
+  display: block;
+  /* 以下.cardの共通スタイル */
+}
+
+.card--has-thumbnail {
+  display: flex;
+}
+```
+
+この例では、
+
+- サムネイル画像がある場合
+- サムネイル画像がない場合
+
+の2パターンしかないので、それほど問題ではないかもしれません。
+
+しかし、さらにパターンが増える場合や、複雑な条件分岐が必要な場合は、クラスの追加が煩雑になりがちです。
+
+#### :has()を使用する場合
+
+続いては、`:has()`を使用するとどうなるかを見てみましょう。
+
+まずHTML上では、追加のクラス(`.card--has-thumbnail`)の記述が必要なくなります。
+
+<CodeHead lang="html" />
+
+```html showLineNumbers {2}
+<!-- 画像ありの場合 -->
+<a class="card">
+  <div class="card__thumbnail">
+    <img src="thumbnail.jpg" alt="サムネイル画像" />
+  </div>
+  <div class="card__content">
+    <!-- ここにコンテンツが入ります -->
+  </div>
+</a>
+
+<!-- 画像なしの場合 -->
+<a class="card">
+  <div class="card__content">
+    <!-- ここにコンテンツが入ります -->
+  </div>
+</a>
+```
+
+サムネイル画像あり、なしに関わらず、`.card`クラスのみになります。
+
+CSSにも追加クラスを記述する必要はなく、`:has()`を使用してスタイリングすることができます。
+
+<CodeHead lang="css" />
+
+```css
+.card {
+  display: block;
+  /* 以下.cardの共通スタイル */
+}
+
+.card:has(.card__thumbnail) {
+  display: flex;
+}
+```
+
+このコードでは、`.card`の中に`.card__thumbnail`がある場合、`display: flex`を適用するという意味になります。
+
+`:has()`を使用することで余分なクラスの作成が不要になると、HTMLだけでなくCSSもスッキリとした記述になりますね。
+
+### メリット2. JavaScriptなしで、子要素の状態に応じた親要素のスタイルを適用できる
+
+これまでのCSSでは、子孫要素の状態に応じて親要素のスタイルを変更するには、JavaScriptを使用する必要がありました。
+
+しかし、`:has()`を利用することで、JavaScriptなしで子孫要素が親要素のスタイルに干渉することが可能です。
+
+具体的な使用例は、次の章で紹介していきます。
+
+## :has()の実用的な使用例
+
+ここからは、実際の案件で使えるような`:has()`の使用例を、コード付きで紹介していきます。
+
+### キャプションあり・なしで画像のスタイルを変更する
+
+HTMLには、`figure`と`figcaption`というタグがあり、キャプション付きの画像を作成する際に使用されます。
+
+このとき、以下のようにキャプションをつけたい場合と、そうでない場合があるとします。
+
+<NextImage
+  src="/images/blog/css-has-pseudo-class/figure.png"
+  width={1200}
+  height={759}
+  alt="figcaptionあり・なしの違い"
+/>
+
+HTML上では、以下のようになりますね。
+
+<CodeHead lang="html" />
+
+```html
+<!-- キャプションなしの画像 -->
+<figure>
+  <img src="cat.jpg" alt="説明テキスト" />
+</figure>
+
+<!-- キャプションありの画像 -->
+<figure>
+  <img src="cat.jpg" alt="説明テキスト" />
+  <figcaption>うちの猫です。</figcaption>
+</figure>
+```
+
+このとき、`figcaption`がある場合・ない場合で`figure`のスタイルを変更したいとき、以下のように記述することができます。
+
+<CodeHead lang="css" />
+
+```css
+/* figureの共通スタイル */
+figure {
+  width: 400px;
+}
+
+figcaption {
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/* figcaptionがある場合のfigureのスタイル */
+figure:has(figcaption) {
+  background-color: #fff;
+  padding: 10px;
+}
+```
+
+追加のクラスを用意することなく、`figcaption`があり/なしのスタイルを分けることができるので、便利ですね。
+
+### 子要素をホバーすると親要素の背景色が変わる
+
+`:has()`と`:hover`を組み合わせることで、子要素をホバーしたときに親要素のスタイルを変更することができます。
+
+以下の例では、SNSボタンにマウスカーソルを当てると、親要素の背景色が各SNSの色に変わるようにしています。
+
+<BrowserBox hasNoPadding name="ホバーすると背景色が変わるSNSボタンのデモ">
+  <CssHasPseudoClass.sns />
+</BrowserBox>
+
+<CodeHead lang="html" />
+
+```html
+<div class="sns-buttons">
+  <button class="sns-button -x">
+    <img src="icon-x.png" alt="X" />
+  </button>
+  <button class="sns-button -ig">
+    <img src="icon-ig.png" alt="Instagram" />
+  </button>
+  <button class="sns-button -fb">
+    <img src="icon-fb.png" alt="Facebook" />
+  </button>
+</div>
+```
+
+<CodeHead lang="css" />
+
+```css
+.sns-buttons {
+  /* 親要素のスタイル */
+}
+
+.sns-button {
+  /* 子要素のスタイル */
+}
+
+/* Xボタンをホバーした時のスタイル */
+.sns-buttons:has(.sns-button.-x:hover) {
+  background-color: #000;
+}
+
+/* Instagramボタンをホバーした時のスタイル */
+.sns-buttons:has(.sns-button.-ig:hover) {
+  background-color: #c13584;
+}
+
+/* Facebookボタンをホバーした時のスタイル */
+.sns-buttons:has(.sns-button.-fb:hover) {
+  background-color: #1877f2;
+}
+```
+
+このように、`:has()`と`:hover`を組み合わせることで、JavaScriptを使用せずに親要素のスタイルを変更することができます。
+
+### selectタグにplaceholderのような文字色を設定する
+
+お問い合わせフォームを実装する際に、未入力の欄には`placeholder`としてダミーのテキストを設定することが一般的です。
+
+これらのテキストはデフォルトでグレー色になっており、ユーザーが入力すると文字色が黒に変わります。
+
+しかし、以下の画像ように、`select`タグには`placeholder`を設定できないため、未選択の場合でも文字が黒になってしまいます。
+
+<NextImage src="/images/blog/css-has-pseudo-class/select-placeholder.png" width={1200} height={579} alt="" hasBorder>
+  inputタグは文字色がグレーなのに対して、selectのみ文字色が黒になっている
+</NextImage>
+
+このような場合、`:has()`を使用して`option`タグが選択されていない場合のスタイルを変更することができます。
+
+<CodeHead lang="html" />
+
+```html
+<form>
+  <select name="option">
+    <option value="">選択してください</option>
+    <option value="選択肢1">選択肢1</option>
+    <option value="選択肢2">選択肢2</option>
+    <option value="選択肢3">選択肢3</option>
+  </select>
+</form>
+```
+
+<CodeHead lang="css" />
+
+```css
+form:has(option[value=""]:checked) .select[name="option"] {
+  color: gray;
+}
+```
+
+このコードで、以下のように`option`タグが選択されていない場合の文字色をグレーに変更することができます。
+
+<BrowserBox name="placeholderのような文字色を実装したselectタグのデモ">
+  <p>以下にselectタグのデモを用意しましたので、実際の動作を試してみてください。</p>
+  <CssHasPseudoClass.select />
+</BrowserBox>
+
+従来までは、JavaScriptを使用して、`option`の値に応じてスタイルを動的に変更する必要がありましたが、`:has()`を使用することでCSSのみで実装可能になりました。
+
+### selectの選択肢に応じて、追加のinputを表示する
+
+フォームに使用される`select`タグは、ユーザーに複数の選択肢から1つを選んでもらうために使用します。
+
+しかし、どの選択肢にも当てはまらない場合は、自由にテキストを入力できる欄を追加で表示したいという場合がありますね。
+
+例えば、
+
+- サービスを知ったきっかけ
+- お問い合わせの種類
+
+などによく使用されます。
+
+以下の例では、`select`タグの選択肢に応じて、追加の`input`を表示する方法を紹介します。
+
+<CodeHead lang="html" />
+
+```html
+<form>
+  <label for="referrer">サービスを知ったきっかけ</label>
+  <select name="referrer">
+    <option value="google">Google検索</option>
+    <option value="sns">SNS</option>
+    <option value="ads">Web広告</option>
+    <option value="referral">知人の紹介</option>
+    <option value="others">その他</option>
+  </select>
+
+  <div class="others-input">
+    <label for="others">その他</label>
+    <input type="text" name="others" />
+  </div>
+</form>
+```
+
+<CodeHead lang="css" />
+
+```css
+/* 「その他」の入力欄は初期非表示 */
+.others-input {
+  display: none;
+}
+
+/* selectで「その他」を選択すると、入力欄を表示 */
+form:has(select[name="referrer"] option[value="others"]:checked) .others-input {
+  display: block;
+}
+```
+
+以下のデモで、「その他」を選択してみてください。
+
+追加の入力欄が表示されることが確認できるかと思います。
+
+<BrowserBox>
+  <CssHasPseudoClass.refSelect />
+</BrowserBox>
+
+このように、`:has()`を使用することで、選択肢に応じて追加の入力欄を表示することが可能です。
+
+### モーダルが開いているときに、スクロールを禁止する
+
+Web制作者なら、**モーダルやナビゲーションメニューを開いたときに、背景を固定してスクロールを禁止する**という機能を一度は実装したことがあるかと思います。
+
+従来の方法では、JavaScriptで`html`タグまたは全体を囲うラッパータグに`overflow: hidden`を適用することで、スクロールを禁止することが一般的でした。
+
+<CodeHead lang="js" />
+
+```js
+const html = document.querySelector("html");
+const modal = document.getElementById("modal");
+
+const toggleModal = () => {
+  // is-modal-openクラスを付与/削除
+  html.classList.toggle("is-modal-open");
+
+  // モーダルを開閉するロジックを記述
+  modal.classList.toggle("is-open");
+};
+```
+
+<CodeHead lang="css" />
+
+```css
+/* モーダルが開いている時は、スクロールを禁止 */
+html.is-modal-open {
+  overflow: hidden;
+}
+
+.modal {
+  /* モーダルのスタイル */
+}
+
+.modal.is-open {
+  display: block;
+}
+```
+
+他にも方法はいろいろありますが、基本的には上記のようなコードで実装することが多いです。
+
+ここで、`:has()`を使用した例を見てみましょう。
+
+<Spacer />
+
+まずはHTMLの構成を見ていきます。ここでは説明のためシンプルにしています。
+
+<CodeHead lang="html" />
+
+```html
+<html>
+  <head></head>
+  <body>
+    <button id="modal-open-button">モーダルを開く</button>
+
+    <div class="modal" id="modal">
+      <div class="modal__content">
+        <!-- モーダルのコンテンツ -->
+      </div>
+      <button id="modal-close-button">モーダルを閉じる</button>
+    </div>
+  </body>
+</html>
+```
+
+<Spacer />
+
+JavaScriptでは、`data-modal-is-open`を切り替えることで、モーダルの開閉状態を管理します。
+
+<CodeHead lang="js" />
+
+```js
+const modal = document.getElementById("modal");
+const modalOpenButton = document.getElementById("modal-open-button");
+const modalCloseButton = document.getElementById("modal-close-button");
+
+const openModal = () => {
+  // モーダルを開くロジックを記述
+  modal.dataset.modalIsOpen = true;
+};
+
+const closeModal = () => {
+  // モーダルを開くロジックを記述
+  modal.dataset.modalIsOpen = false;
+};
+
+modalOpenButton.addEventListener("click", openModal);
+modalCloseButton.addEventListener("click", closeModal);
+```
+
+CSSでは、`data`属性ひとつでスクロールの禁止、モーダルが開いている場合のスタイルを適用することができます。
+
+<CodeHead lang="css" />
+
+```css
+/* スクロールを禁止 */
+html:has([data-modal-is-open="true"]) {
+  overflow: hidden;
+}
+
+.modal {
+  /* モーダルの共通スタイル */
+}
+
+.modal[data-modal-is-open="true"] {
+  /* モーダルを開く時のスタイル */
+}
+```
+
+このように、`:has()`を利用することで、余分なクラスを追加することなくモーダルの機能を実装できます。
+
+<Spacer />
+
+また、この仕組みはReactのようなコンポーネントベースのフレームワークでも有効です。
+
+<CodeHead lang="jsx" name="modal.jsx" />
+
+```jsx showLineNumbers {7}
+import { useState } from "react";
+
+function Modal() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  return (
+    <div data-modal-is-open={isModalOpen}>
+      <div>{/* モーダルのコンテンツ */}</div>
+    </div>
+  );
+}
+```
+
+CSSには以下のように記述することで、`html`の中のどこかで`data-modal-is-open`が`true`になっている場合に、スクロールを禁止することができます。
+
+<CodeHead lang="css" />
+
+```css
+html:has([data-modal-is-open="true"]) {
+  overflow: hidden;
+}
+```
+
+従来では、`useEffect`や`useContext`でモーダルの開閉状態に応じてスクロールを制御する必要がありましたが、`:has()`を使用することでCSSのみで実装することが可能になります。
+
+## :has()のブラウザ対応状況
+
+最後に、`:has()`のブラウザ対応状況について見ていきましょう。
+
+2024年10月現在、`:has()`は以下のブラウザとバージョンでサポートされています。
+
+<NextImage
+  src="/images/blog/css-has-pseudo-class/has-support.png"
+  width={1000}
+  height={384}
+  alt=":has()のブラウザサポート対応状況"
+>
+  <OuterLink href="https://caniuse.com/?search=has()">
+    {`"has()" | Can I use... Support tables for HTML5, CSS3, etc`}
+  </OuterLink>
+</NextImage>
+
+全ての主要ブラウザでサポートされているので、問題なく使用することができますね。
+
+カバー率も91.66%と高いため、一部の古いブラウザを除いて安心して使用することができるでしょう。
+
+## 【まとめ】:has()のメリットと実用的な使用例
+
+今回は、`:has()`の基本的な情報やメリットから、具体的な実用例を紹介しました。
+
+`:has()`を使用することで、
+
+- 余分なクラスを作成しなくてよくなる
+- JavaScriptなしで、子から親に干渉できる
+- ロジックが簡潔になる
+
+といったメリットがあることがわかっていただけたかと思います。
+
+<Spacer />
+
+また、`:has()`を利用して、実際の案件にも使えそうな実用例も紹介しました。
+
+`:has()`を使わないと実装できないというものは一つもありませんが、コードの記述量が減り、ロジックも簡潔になる場面が多いです。
+
+当記事を参考に、`:has()`の使用を検討してみてはいかがでしょうか。

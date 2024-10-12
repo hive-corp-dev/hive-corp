@@ -1,0 +1,89 @@
+@import "@sass-utils";
+
+.form {
+  &:has(option[value=""]:checked) .select[name="option"] {
+    color: gray;
+  }
+}
+
+.select {
+  width: 100%;
+  max-width: 30rem;
+  padding: 0.4rem;
+}
+
+.refForm {
+  label {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+.refSelect,
+.refInput {
+  width: 100%;
+  max-width: 30rem;
+  padding: 0.4rem;
+}
+
+.refOthersInput {
+  display: none;
+  margin-top: 1.6rem;
+}
+
+.refForm:has(select[name="referrer"] option[value="others"]:checked) .refOthersInput {
+  display: block;
+}
+
+.snsButtons {
+  padding: 6.4rem 2.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.6rem;
+  transition: all 0.3s;
+
+  .button {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    border: 0.1rem solid #ccc;
+    font-size: 1.8rem;
+    background-color: $c-white;
+    transition: all 0.3s;
+
+    &.isX {
+      &:hover {
+        background-color: #000;
+        color: $c-white;
+      }
+    }
+
+    &.isIg {
+      &:hover {
+        background-color: #c13584;
+        color: $c-white;
+      }
+    }
+
+    &.isFb {
+      &:hover {
+        background-color: #1877f2;
+        color: $c-white;
+      }
+    }
+  }
+
+  &:has(.isX:hover) {
+    background-color: #333;
+  }
+
+  &:has(.isIg:hover) {
+    background-color: #c13584;
+  }
+
+  &:has(.isFb:hover) {
+    background-color: #1877f2;
+  }
+}

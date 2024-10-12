@@ -15,6 +15,7 @@ export const BLOG_TAGS = [
   { slug: "subscription", label: "サブスク" },
   { slug: "marketing", label: "マーケティング" },
   { slug: "cms", label: "CMS" },
+  { slug: "css", label: "CSS" },
   { slug: "jamstack", label: "Jamstack" },
   { slug: "seo", label: "SEO" },
   { slug: "wordpress", label: "WordPress" },

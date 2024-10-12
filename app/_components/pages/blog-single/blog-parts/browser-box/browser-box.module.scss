@@ -1,0 +1,114 @@
+@import "@sass-utils";
+
+.box {
+  border-radius: 0.8rem;
+  border: 0.3rem solid #efeff5;
+  overflow: hidden;
+}
+
+.head {
+  position: relative;
+  background-color: #efeff5;
+  padding: 0 2rem 0 7rem;
+  min-height: 3.8rem;
+  display: flex;
+  align-items: flex-end;
+
+  @include sp {
+    min-height: 3.2rem;
+    padding-left: 6rem;
+    padding-right: 1.6rem;
+  }
+}
+
+.dots {
+  position: absolute;
+  left: 1rem;
+  top: 1.3rem;
+  display: flex;
+  align-items: center;
+  margin-right: 1.2rem;
+
+  @include sp {
+    top: 1.1rem;
+  }
+
+  span,
+  &::before,
+  &::after {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    margin-right: 0.6rem;
+    display: block;
+
+    @include sp {
+      width: 0.8rem;
+      height: 0.8rem;
+      margin-right: 0.4rem;
+    }
+  }
+
+  &::before,
+  &::after {
+    content: "";
+  }
+
+  &::before {
+    background-color: #ff5f57;
+  }
+
+  span {
+    background-color: #febc2e;
+  }
+
+  &::after {
+    background-color: #28c840;
+  }
+}
+
+.name {
+  background-color: $c-white;
+  border-radius: 0.8rem 0.8rem 0 0;
+  padding: 0.6rem 1.2rem;
+  display: inline-block;
+
+  @include sp {
+    max-width: 100%;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.4rem 0.4rem 0 0;
+  }
+}
+
+.nameInner {
+  font-size: 1.3rem;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+
+  @include sp {
+    font-size: 1.1rem;
+    -webkit-line-clamp: unset;
+    white-space: nowrap;
+    overflow-x: auto;
+  }
+}
+
+.content {
+  padding: 2.4rem;
+  overflow: hidden;
+
+  @include sp {
+    padding: 2rem;
+  }
+
+  &.hasNoPadding {
+    padding: 0;
+  }
+
+  & > *:not(:first-child) {
+    margin-top: 1.6rem;
+  }
+}
