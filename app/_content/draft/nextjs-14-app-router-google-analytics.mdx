@@ -1,0 +1,191 @@
+---
+title: "Next.js 14（App Router）にGoogle Analytics 4を導入する方法"
+description: "Next.js 14（App Router）にGoogle Analytics 4を導入する方法を解説します。公式ライブラリの@next/third-partiesを使用し、実際のコード例も合わせて紹介します。"
+thumbnail: "/images/blog/nextjs-14-app-router-google-analytics/thumb.png"
+category: "website"
+tags: ["google-analytics", "nextjs"]
+publishedAt: "2024-10-27T10:00:00"
+author: "tatsuya"
+---
+
+Webサイトでアクセス解析を行う場合、<OuterLink href="https://marketingplatform.google.com/about/analytics/">Google Analytics</OuterLink>を導入することが一般的ですね。
+
+Next.jsで作成したサイトにもGoogle Analyticsを導入することができますが、一般的な方法とは少し異なります。
+
+そこでこの記事では、Next.jsのApp Routerで、Google Analytics 4を導入する方法を紹介します。
+
+## 開発環境のバージョン
+
+当記事で紹介する方法は、以下のバージョンで動作確認を行っています。
+
+<NpmVersions
+  versions={[
+    { name: "next", version: "14.2.15" },
+    { name: "@next/third-parties", version: "14.2.15" },
+  ]}
+/>
+
+Next.jsはバージョン14系で、App Routerを使用しています。
+
+また、すでにNext.jsでプロジェクトを作成済み、Google Analytics 4のトラッキングIDを取得済みという前提で進めます。
+
+<InfoBox type="success">
+  バージョンが異なると当記事で紹介している通りに動作しない可能性があるので、ご注意ください。
+</InfoBox>
+
+## Next.jsでGoogle Analytics 4を導入する方法
+
+ここからは、実際のGoogle Analytics 4の導入方法を説明していきます。
+
+1. Next.js公式のパッケージをインストールする
+2. layout.jsにGoogle Analyticsのコンポーネントを追加する
+3. 環境変数を設定する
+
+### 1. Next.js公式のパッケージをインストールする
+
+まずは、Google Analytics 4を導入するために必要な、`@next/third-parties` というパッケージをインストールします。
+
+<CodeHead lang="console" />
+
+```console
+npm install @next/third-parties@latest
+```
+
+このパッケージは、Google Analyticsだけでなく、Google Tag ManagerやGoogle Mapsの埋め込みにも使用できる便利なパッケージです。
+
+### 2. layout.jsにGoogle Analyticsのコンポーネントを追加する
+
+続いては、`GoogleAnalytics`コンポーネントを読み込み、`layout.js`に追加します。
+
+まずは基本的な`layout.js`のコードを確認しましょう。
+
+<CodeHead lang="jsx" name="layout.js" />
+
+```jsx showLineNumbers
+export default function RootLayout({ children }) {
+  return (
+    <html lang="ja">
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+ここでは例のため最低限の要素のみ記載していますが、プロジェクトによっては違った構造になっているかもしれません。
+
+次に、完成形のコードを見てみましょう。
+
+<CodeHead lang="jsx" name="layout.js" />
+
+```jsx showLineNumbers {1, 4, 10}
+import { GoogleAnalytics } from "@next/third-parties/google";
+
+export default function RootLayout({ children }) {
+  const gaId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
+
+  return (
+    <html lang="ja">
+      <body>
+        {children}
+        {gaId && <GoogleAnalytics gaId={gaId} />}
+      </body>
+    </html>
+  );
+}
+```
+
+順番に解説していきます。
+
+#### パッケージからGoogleAnalyticsを読み込む
+
+`@next/third-parties/google`には`GoogleAnalytics`というコンポーネントが用意されているので、これをインポートします。
+
+<CodeHead lang="jsx" name="layout.js" />
+
+```jsx showLineNumbers
+import { GoogleAnalytics } from "@next/third-parties/google";
+```
+
+#### 環境変数の値を取得する
+
+Google AnalyticsのトラッキングIDは、環境変数に設定しておきます。
+
+<CodeHead lang="jsx" name="layout.js" />
+
+```jsx showLineNumbers
+const gaId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
+```
+
+この時、ローカルの開発環境ではではアクセス解析が行われないようにするため、`.env.local`ファイルにはGoogle AnalyticsのトラッキングIDを設定しないようにしましょう。
+
+そうすることで、開発環境では`gaId`は`undefined`となり、Google Analyticsのコンポーネントが読み込まれないようになります。
+
+#### GoogleAnalyticsコンポーネントを追加する
+
+次に、`lyaout.js`に`GoogleAnalytics`コンポーネントを追加します。
+
+追加する場所は公式のドキュメント通り、`</body>`の直前に追加します。
+
+<CodeHead lang="jsx" name="layout.js" />
+
+```jsx showLineNumbers {3}
+<body>
+  {children}
+  {gaId && <GoogleAnalytics gaId={gaId} />}
+</body>
+```
+
+この時、`gaId`が`true`の場合、つまり環境変数に値が設定されている場合のみ、コンポーネントを読み込むようにします。
+
+こうすることで、開発環境ではGoogle Analyticsのコードが読み込まれなくなります。
+
+### 3. 環境変数を設定する
+
+最後に、お使いのホスティングサービスにて環境変数を設定します。
+
+ここでは、<OuterLink href="https://vercel.com/">Vercel</OuterLink>を例に説明しますが、他のホスティングサービスでも同様の手順で設定できます。
+
+<Spacer />
+
+まずVercelの管理画面からプロジェクトを選択し、[Settings] → [Environment Variables]のページを開きます。
+
+<NextImage
+  src="/images/blog/nextjs-14-app-router-google-analytics/vercel-environment-variables.png"
+  width={1000}
+  height={223}
+  alt="Environment Variablesの設定画面"
+  hasBorder
+/>
+
+すると上記のような入力欄が表示されるので、
+
+- key: `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID`
+- value: `G-`で始まるGoogle AnalyticsのトラッキングID
+
+をそれぞれ入力し、[Save]で保存してください。
+
+これで環境変数を設定する作業は完了です。
+
+<Spacer />
+
+あとはビルドを行い、サイトを公開すればGoogle Analytics 4の導入が完了します。
+
+ページを表示してソースコードを確認すると、Google Analyticsのコードが挿入されていることが確認できるはずです。
+
+<NextImage
+  src="/images/blog/nextjs-14-app-router-google-analytics/gtag-inserted.png"
+  width={1000}
+  height={161}
+  alt="Google Analyticsのコードが挿入されている様子"
+  hasBorder
+/>
+
+以上で、Google Analytics 4の導入方法は終わりです。
+
+## まとめ：Next.js 14（App Router）にGoogle Analytics 4を導入する方法
+
+今回は、Next.jsのApp RouterでGoogle Analytics 4を導入する方法を紹介しました。
+
+公式のパッケージを使用することで、簡単に実装することができますね。
+
+Next.jsでGoogle Analyticsを導入しようと考えている方の参考になれば幸いです。

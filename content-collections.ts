@@ -24,7 +24,20 @@ const BlogPost = defineCollection({
       return val;
     }, z.string()),
     category: z.enum(["website", "tech-topics"]),
-    tags: z.array(z.enum(["useful-info", "subscription", "marketing", "cms", "css", "jamstack", "seo", "wordpress"])),
+    tags: z.array(
+      z.enum([
+        "useful-info",
+        "subscription",
+        "marketing",
+        "cms",
+        "css",
+        "google-analytics",
+        "jamstack",
+        "nextjs",
+        "seo",
+        "wordpress",
+      ])
+    ),
     publishedAt: z.preprocess((arg) => {
       if (typeof arg === "string" || arg instanceof Date) {
         return new Date(arg); // 文字列またはDateオブジェクトをDateに変換

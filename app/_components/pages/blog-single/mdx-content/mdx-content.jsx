@@ -10,6 +10,7 @@ import OuterLink from "../blog-parts/outer-link/outer-link";
 import InfoBox from "../blog-parts/info-box/info-box";
 import Highlight from "../blog-parts/highlight/highlight";
 import BrowserBox from "../blog-parts/browser-box/browser-box";
+import NpmVersions from "../blog-parts/npm-versions/npm-versions";
 
 import JamstackSsrComparison from "../blog-parts/one-off/jamstack-ssr-comparison/jamstack-ssr-comparison";
 import SubscriptionPayment from "../blog-parts/one-off/subscription-payment/subscription-payment";
@@ -36,6 +37,7 @@ export default function MDX({ code }) {
           InfoBox,
           Highlight,
           BrowserBox,
+          NpmVersions,
 
           // one off components
           JamstackSsrComparison,

@@ -4,6 +4,8 @@ import Container from "@/app/_components/common/container/container";
 import { IoFolderOutline } from "react-icons/io5";
 import { formatDate } from "@/app/_utils/date";
 import { PiClock, PiClockClockwise } from "react-icons/pi";
+import { HiOutlineArchiveBox } from "react-icons/hi2";
+import { FiChevronRight } from "react-icons/fi";
 import { getCategoryLabelBySlug, getCategoryPath, getTagLabelBySlug, getTagPath } from "@/app/_utils/blog";
 import { BsTags } from "react-icons/bs";
 import Link from "next/link";
@@ -14,11 +16,22 @@ export default function BlogMv({ title, publishedAt, modifiedAt, categorySlug, t
   return (
     <section className={styles.mv}>
       <Container>
-        <div className={styles.cat}>
-          <Link href={getCategoryPath(categorySlug)} className={styles.catLink}>
-            <IoFolderOutline />
-            {categoryLabel}
-          </Link>
+        <div className={styles.parentLinks}>
+          <div className={styles.blogArchive}>
+            <Link href="/blog" className={styles.blogArchiveLink}>
+              <HiOutlineArchiveBox />
+              ブログ
+            </Link>
+          </div>
+          <div className={styles.parentLinkArrow}>
+            <FiChevronRight />
+          </div>
+          <div className={styles.cat}>
+            <Link href={getCategoryPath(categorySlug)} className={styles.catLink}>
+              <IoFolderOutline />
+              {categoryLabel}
+            </Link>
+          </div>
         </div>
         <h1 className={styles.title}>{title}</h1>
         <div className={styles.info}>

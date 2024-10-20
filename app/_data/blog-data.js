@@ -10,13 +10,16 @@ export const BLOG_CATEGORIES = [
 ];
 
 // 並べ替えは手動で行う
+// content-collections.tsにも追記する
 export const BLOG_TAGS = [
   { slug: "useful-info", label: "お役立ち情報" },
   { slug: "subscription", label: "サブスク" },
   { slug: "marketing", label: "マーケティング" },
   { slug: "cms", label: "CMS" },
   { slug: "css", label: "CSS" },
+  { slug: "google-analytics", label: "Google Analytics" },
   { slug: "jamstack", label: "Jamstack" },
+  { slug: "nextjs", label: "Next.js" },
   { slug: "seo", label: "SEO" },
   { slug: "wordpress", label: "WordPress" },
 ];
