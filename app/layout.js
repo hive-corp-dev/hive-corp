@@ -7,6 +7,7 @@ import { HeaderContextProvider } from "./_context/header-context";
 import { HamburgerMenuContextProvider } from "./_context/hamburger-menu-context";
 import HamburgerMenu from "./_components/layouts/hamburger-menu/hamburger-menu";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Clarity } from "./_utils/clarity";
 
 const notoSansJp = Noto_Sans_JP({
   subsets: ["latin"],
@@ -21,6 +22,9 @@ export default function RootLayout({ children }) {
     <html lang="ja">
       <HamburgerMenuContextProvider>
         <HeaderContextProvider>
+          <head>
+            <Clarity />
+          </head>
           <body className={notoSansJp.className}>
             <Header />
             <HamburgerMenu />

@@ -1,0 +1,248 @@
+---
+title: "Next.js(App Router)にMicrosoft Clarityを導入する方法"
+description: ""
+thumbnail: "/images/blog/nextjs-14-app-router-google-analytics/thumb.png"
+category: "website"
+tags: ["analytics-tool", "microsoft-clarity", "nextjs"]
+publishedAt: "2024-10-27T12:00:00"
+author: "tatsuya"
+---
+
+皆さんは<OuterLink href="https://clarity.microsoft.com/">Microsoft Clarity</OuterLink>というアクセス解析ツールをご存知でしょうか。
+
+Microsoft Clarityは、ユーザーの動きをヒートマップやレコーディングで可視化したり、行動データをもとにサイト改善のためのインサイトを提供してくれるツールです。
+
+今回の記事では、Next.jsで作成したサイトにMicrosoft Clarityを導入する方法を解説します。
+
+## Next.jsのバージョン・開発環境
+
+当記事で紹介する方法は、以下のバージョンで動作確認を行っています。
+
+<NpmVersions versions={[{ name: "next", version: "14.2.15" }]} />
+
+Next.jsはバージョン14系で、App Routerを使用しています。
+
+また、すでにNext.jsでプロジェクトを作成済みという前提で進めます。
+
+<InfoBox type="success">
+  Pages
+  Routerを使用している場合、Next.jsのバージョンが異なる場合は、当記事が紹介している通りに動作しない可能性がありますので、ご注意ください。
+</InfoBox>
+
+## Next.jsにMicrosoft Clarityを導入する方法
+
+ここからは、実際のMicrosoft Clarityの導入方法を説明していきます。
+
+### 1. Microsoft Clarityのアカウントを作成する
+
+まずは、<OuterLink href="https://clarity.microsoft.com/">Clarityの公式サイト</OuterLink>にアクセスし、アカウントを作成します。
+
+<NextImage
+  src="/images/blog/nextjs-14-app-router-microsoft-clarity/clarity.png"
+  width={1000}
+  height={555}
+  hasBorder
+  alt="Clarity公式サイト"
+/>
+
+サインアップをクリックすると、
+
+- Microsoft
+- Facebook
+- Google
+
+のアカウントから登録できますので、好きな方法で登録してください。
+
+<Spacer />
+
+Clarityの使用条件に同意し、[続ける]をクリックします。
+
+<NextImage
+  src="/images/blog/nextjs-14-app-router-microsoft-clarity/register.png"
+  width={1000}
+  height={536}
+  hasBorder
+  alt="Clarity登録画面"
+/>
+
+<Spacer />
+
+### 2. Microsoft Clarityにプロジェクトを追加する
+
+次に、プロジェクトを追加します。
+
+以下の3つの情報を入力し、[プロジェクトを追加]をクリックしてください。
+
+- 名前
+- WebサイトのURL
+- Webサイトの業種
+
+<NextImage
+  src="/images/blog/nextjs-14-app-router-microsoft-clarity/add-project.png"
+  width={1000}
+  height={606}
+  hasBorder
+  alt="プロジェクトを追加する"
+/>
+
+### 3. Microsoft Clarityの追跡コードを取得する
+
+次に、インストール方法を選択します。
+
+Next.jsの場合は、追跡コードを手動でインストールする方法を選択します。
+
+<InfoBox type="success">
+  当記事では紹介しませんが、もしGoogleタグマネージャー経由で追加する場合は、[すべてのプラットフォームを表示]からGoogle
+  Tag Managerを選択してください。
+</InfoBox>
+
+<NextImage
+  src="/images/blog/nextjs-14-app-router-microsoft-clarity/method.png"
+  width={1000}
+  height={726}
+  hasBorder
+  alt="インストール方法を選択する"
+/>
+
+<Spacer />
+
+すると追跡コードが表示されるので、これをコピーしておきます。
+
+<NextImage
+  src="/images/blog/nextjs-14-app-router-microsoft-clarity/copy-code.png"
+  width={1000}
+  height={387}
+  hasBorder
+  alt="Clarityの追跡コードをコピー"
+/>
+
+### 4. Next.jsにClarityの追跡コードを埋め込む
+
+ここからは、Next.jsのプロジェクト上で作業します。
+
+まずはじめに、Clarityのタグを埋め込むための`clarity.js`を作成し、以下のように記述します。
+
+<CodeHead lang="jsx" name="/app/utils/clarity.js" />
+
+```jsx
+import Script from "next/script";
+
+const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;
+
+export function Clarity() {
+  CLARITY_ID && (
+    <Script strategy="afterInteractive">
+      {`
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "${CLARITY_ID}");
+    `}
+    </Script>
+  );
+}
+```
+
+#### next/scriptのScriptコンポーネントを使用する
+
+Next.jsで`script`を埋め込む場合は、`next/script`を使用します。
+
+<CodeHead lang="jsx" name="/app/utils/clarity.js" />
+
+```jsx
+<Script strategy="afterInteractive">
+  {`
+    /* ここにscriptの内容が入ります */
+  `}
+</Script>
+```
+
+Clarityを含む分析ツールは、ページがインタラクティブになってから実行することが推奨されています。
+
+そのため、`strategy`には`afterInteractive`を指定します。
+
+#### 環境変数が設定されている場合のみコードを埋め込む
+
+ローカル環境では追跡コードを読み込まないようにするため、環境変数が設定されている場合のみコードを埋め込むようにします。
+
+<CodeHead lang="jsx" name="/app/utils/clarity.js" />
+
+```jsx
+const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;
+
+export function Clarity() {
+  CLARITY_ID && (
+    /* ここにscriptの内容が入ります */
+  )
+}
+```
+
+#### layout.jsにClarityコンポーネントを追加する
+
+次に、`layout.js`に`Clarity`コンポーネントを追加します。
+
+<CodeHead lang="jsx" name="/app/layout.js" />
+
+```jsx showLineNumbers
+import Clarity from "./utils/clarity";
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="ja">
+      <body>
+        <head>
+          <Clarity />
+        </head>
+        {children}
+      </body>
+    </html>
+  );
+}
+```
+
+Clarityの追跡コードは`head`内に記述する必要があるので、`head`タグ内に`Clarity`コンポーネントを追加します。
+
+これで、Next.jsのプロジェクト内での作業は完了です。
+
+### 5. 本番環境のホスティングサービスに環境変数を設定する
+
+最後に、本番環境のホスティングサービスに環境変数を設定します。
+
+ここではVercelを例に説明しますが、他のホスティングサービスを利用している場合は、そのサービスに合わせて設定してください。
+
+Vercelのダッシュボードから、[Settings] → [Environment Variables]に移動します。
+
+<NextImage
+  src="/images/blog/nextjs-14-app-router-microsoft-clarity/vercel-settings.png"
+  width={1000}
+  height={791}
+  hasBorder
+  alt="VercelのSettings画面"
+/>
+
+<Spacer />
+
+`key`は`NEXT_PUBLIC_CLARITY_ID`、`value`にはClarityの追跡コード内にある、添付画像赤枠内のIDを入力します。
+
+<NextImage
+  src="/images/blog/nextjs-14-app-router-microsoft-clarity/clarity-id.png"
+  width={1000}
+  height={387}
+  hasBorder
+  alt="Clarityの追跡コード内のID"
+/>
+
+<NextImage
+  src="/images/blog/nextjs-14-app-router-microsoft-clarity/save-variable.png"
+  width={1000}
+  height={233}
+  hasBorder
+  alt="Environment Variablesの設定画面"
+/>
+
+情報を入力したら、[Save]をクリックして保存します。
+
+これで環境変数の設定は完了です。
+
+あとは本番環境にプロジェクトをデプロイすれば、最大2時間ほどでClarityのデータが表示されるようになります。
