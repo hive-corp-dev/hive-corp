@@ -73,14 +73,6 @@
   }
 
   ul {
-    background-color: #f9f9fc;
-    padding: 2.4rem;
-    border: 1px solid #efeff5;
-
-    @include sp {
-      padding: 1.6rem;
-    }
-
     li {
       position: relative;
       padding-left: 0.9em;
@@ -104,6 +96,17 @@
       strong {
         background-image: none;
       }
+    }
+  }
+
+  // ネストされていないul
+  & > ul {
+    background-color: #f9f9fc;
+    border: 1px solid #efeff5;
+    padding: 2.4rem;
+
+    @include sp {
+      padding: 1.6rem;
     }
   }
 

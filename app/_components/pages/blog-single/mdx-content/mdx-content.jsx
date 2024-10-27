@@ -15,6 +15,7 @@ import NpmVersions from "../blog-parts/npm-versions/npm-versions";
 import JamstackSsrComparison from "../blog-parts/one-off/jamstack-ssr-comparison/jamstack-ssr-comparison";
 import SubscriptionPayment from "../blog-parts/one-off/subscription-payment/subscription-payment";
 import CssHasPseudoClass from "../blog-parts/one-off/css-has-pseudo-class/css-has-pseudo-class";
+import CoconalaWebsiteReviewAndCost from "../blog-parts/one-off/coconala-website-review-and-cost/coconala-website-review-and-cost";
 
 import styles from "./mdx-content.module.scss";
 
@@ -43,6 +44,7 @@ export default function MDX({ code }) {
           JamstackSsrComparison,
           SubscriptionPayment,
           CssHasPseudoClass,
+          CoconalaWebsiteReviewAndCost,
         }}
       />
     </article>

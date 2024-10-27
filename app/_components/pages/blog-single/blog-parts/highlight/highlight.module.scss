@@ -1,8 +1,9 @@
 @import "@sass-utils";
 
 .highlight {
+  font-weight: bold;
+
   &.warning {
-    font-weight: bold;
     // color: $c-blog-warning;
   }
 }

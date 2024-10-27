@@ -27,6 +27,7 @@ const BlogPost = defineCollection({
     tags: z.array(
       z.enum([
         "useful-info",
+        "coconala",
         "subscription",
         "marketing",
         "analytics-tool",
