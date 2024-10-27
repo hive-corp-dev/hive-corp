@@ -82,6 +82,10 @@
   font-weight: bold;
   line-height: 1.5;
   margin-bottom: 1rem;
+
+  @include sp {
+    font-size: 1.6rem;
+  }
 }
 
 .content {
