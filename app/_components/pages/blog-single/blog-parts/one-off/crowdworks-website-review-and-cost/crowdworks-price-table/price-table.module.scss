@@ -1,0 +1,59 @@
+@import "@sass-utils";
+
+.wrap {
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 1.4rem;
+
+  @include sp {
+    font-size: 1.3rem;
+  }
+
+  th,
+  td {
+    vertical-align: top;
+  }
+
+  thead {
+    tr {
+      th {
+        padding: 1.2rem;
+        background-color: #f8f8f8;
+        border: 0.1rem solid #e6e6e6;
+        text-align: left;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        padding: 1.2rem;
+        border: 0.1rem solid #e6e6e6;
+
+        &:nth-child(1) {
+          width: 18rem;
+        }
+
+        &:nth-child(2),
+        &:nth-child(3) {
+          width: 50%;
+        }
+      }
+    }
+  }
+}
+
+.caption {
+  font-size: 1.4rem;
+  width: 80%;
+  margin: 0.8rem auto 0;
+
+  @include sp {
+    width: 100%;
+  }
+}
