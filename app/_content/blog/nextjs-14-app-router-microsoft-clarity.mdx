@@ -1,10 +1,10 @@
 ---
 title: "Next.js(App Router)にMicrosoft Clarityを導入する方法"
 description: ""
-thumbnail: "/images/blog/nextjs-14-app-router-google-analytics/thumb.png"
+thumbnail: "/images/blog/nextjs-14-app-router-microsoft-clarity/thumb.png"
 category: "website"
 tags: ["analytics-tool", "microsoft-clarity", "nextjs"]
-publishedAt: "2024-10-27T12:00:00"
+publishedAt: "2024-11-12T12:00:00"
 author: "tatsuya"
 ---
 
@@ -122,6 +122,8 @@ Next.jsの場合は、追跡コードを手動でインストールする方法�
 
 まずはじめに、Clarityのタグを埋め込むための`clarity.js`を作成し、以下のように記述します。
 
+ディレクトリは`app/utils`としていますが、任意のディレクトリに作成してください。
+
 <CodeHead lang="jsx" name="/app/utils/clarity.js" />
 
 ```jsx
@@ -143,6 +145,8 @@ export function Clarity() {
   );
 }
 ```
+
+以下でコードの内容を説明します。
 
 #### next/scriptのScriptコンポーネントを使用する
 
@@ -179,6 +183,8 @@ export function Clarity() {
   )
 }
 ```
+
+このとき、`.env.local`など、ローカル環境には環境変数を設定しないようにしてください。
 
 #### layout.jsにClarityコンポーネントを追加する
 
@@ -248,3 +254,21 @@ Vercelのダッシュボードから、[Settings] → [Environment Variables]に
 これで環境変数の設定は完了です。
 
 あとは本番環境にプロジェクトをデプロイすれば、最大2時間ほどでClarityのデータが表示されるようになります。
+
+ヘッダーの[ダッシュボード]を選択できるようになっていれば、反映完了です。
+
+<NextImage
+  src="/images/blog/nextjs-14-app-router-microsoft-clarity/clarity-dashboard.png"
+  width={1200}
+  height={637}
+  hasBorder
+  alt="Clarityのダッシュボード画面"
+/>
+
+## まとめ：Next.jsにMicrosoft Clarityを導入する方法
+
+今回は、Next.jsにMicrosoft Clarityを導入する方法を解説しました。
+
+ヒートマップや実際のユーザーの動きを録画して確認することができるので、サイト改善には非常に有用なツールです。
+
+Next.jsでMicrosoft Clarityを導入しようと考えている方がいれば、ぜひこの記事を参考にして導入してみてください。
