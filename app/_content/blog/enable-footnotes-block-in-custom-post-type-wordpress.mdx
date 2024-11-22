@@ -1,0 +1,280 @@
+---
+title: "WordPressのカスタム投稿タイプで脚注ブロックが使用できない原因と対処法"
+description: ""
+thumbnail: "/images/blog/enable-footnotes-block-in-custom-post-type-wordpress/thumb.png"
+category: "tech-topics"
+tags: ["wordpress"]
+publishedAt: "2024-11-22T12:00:00"
+author: "tatsuya"
+---
+
+WordPressのバージョン6.3から、ブロックエディタに<OuterLink href="https://wordpress.org/documentation/article/footnotes-block/">脚注ブロック</OuterLink>が追加されました。
+
+このブロックはデフォルトの投稿タイプでは使用できるのですが、カスタム投稿タイプではエディタに表示されないという現象が起こる場合があります。
+
+<NextImage
+  src="/images/blog/enable-footnotes-block-in-custom-post-type-wordpress/default-post-type.png"
+  width={1000}
+  height={702}
+  hasBorder
+  alt="デフォルトの投稿タイプ"
+>
+  WordPress標準の投稿（post）のブロックエディタでは、[脚注]を選択できる。
+</NextImage>
+
+<NextImage
+  src="/images/blog/enable-footnotes-block-in-custom-post-type-wordpress/custom-post-type.png"
+  width={1000}
+  height={584}
+  hasBorder
+  alt="カスタム投稿タイプ"
+>
+  カスタム投稿タイプのブロックエディタでは、[脚注]が表示されない。
+</NextImage>
+
+今回の記事では、**カスタム投稿タイプのブロックエディタでも脚注ブロックを使用する方法**を解説します。
+
+もし同じような現象にお困りの方がいましたら、ぜひ参考にしてみてください。
+
+<TocArticle />
+
+## WordPressのバージョン・開発環境
+
+当記事で紹介する方法は、以下のバージョンで動作確認を行っています。
+
+それぞれ執筆時（2024年11月）の最新バージョンです。
+
+<NpmVersions
+  versions={[
+    { name: "WordPress", version: "6.7" },
+    { name: "Secure Custom Fields", version: "6.3.10.2" },
+    { name: "Advanced Custom Fields PRO", version: "6.3.11" },
+    { name: "Custom Post Type UI", version: "1.17.2" },
+  ]}
+/>
+
+また、カスタム投稿タイプを作成する方法はいくつかありますが、当記事では以下の4つのパターンで作成する場合について解説します。
+
+- functions.phpに記述する方法
+- <OuterLink href="https://ja.wordpress.org/plugins/advanced-custom-fields/">Secure Custom Fields</OuterLink>
+  を使用する方法
+- <OuterLink href="https://www.advancedcustomfields.com/pro/">Advanced Custom Fields PRO</OuterLink>を使用する方法
+- <OuterLink href="https://ja.wordpress.org/plugins/custom-post-type-ui/">Custom Post Type UI</OuterLink>を使用する方法
+
+<InfoBox type="success">
+  上記以外の方法でカスタム投稿タイプを作成している場合も、基本的な考え方は同じなので問題ありません。
+</InfoBox>
+
+## カスタム投稿タイプで脚注ブロックが使用できない原因
+
+原因を特定するには、脚注ブロックのファイルを確認する必要があります。
+
+### footnotes.phpの記述を確認する
+
+脚注ブロックのファイルは、`wp-includes/blocks/footnotes.php`にあります。
+
+コードの中身の一部を抜粋すると以下のようになっています。
+
+<CodeHead lang="php" />
+
+```php showLineNumbers
+/**
+ * Registers the footnotes meta field required for footnotes to work.
+ *
+ * @since 6.5.0
+ */
+function register_block_core_footnotes_post_meta() {
+  $post_types = get_post_types( array( 'show_in_rest' => true ) );
+  foreach ( $post_types as $post_type ) {
+    // Only register the meta field if the post type supports the editor, custom fields, and revisions.
+    if (
+      post_type_supports( $post_type, 'editor' ) &&
+      post_type_supports( $post_type, 'custom-fields' ) &&
+      post_type_supports( $post_type, 'revisions' )
+    ) {
+      register_post_meta(
+      $post_type,
+      'footnotes',
+      array(
+        'show_in_rest'      => true,
+        'single'            => true,
+        'type'              => 'string',
+        'revisions_enabled' => true,
+        )
+      );
+    }
+  }
+}
+```
+
+この抜粋したコードの中で、以下の部分に注目してみます。
+
+<Spacer />
+
+<CodeHead lang="php" />
+
+```php showLineNumbers
+// Only register the meta field if the post type supports the editor, custom fields, and revisions.
+if (
+  post_type_supports( $post_type, 'editor' ) &&
+  post_type_supports( $post_type, 'custom-fields' ) &&
+  post_type_supports( $post_type, 'revisions' )
+)
+```
+
+このコードのif文の上に、
+
+> Only register the meta field if the post type supports the editor, custom fields, and revisions.
+
+というコメントがありますね。
+
+これを訳すと、**投稿タイプがエディタ、カスタムフィールド、リビジョンをサポートしている場合にのみメタフィールドを登録する**という意味になります。
+
+つまり、これらの条件を満たしていないと、脚注ブロックが使用できないということですね。
+
+## カスタム投稿タイプで脚注ブロックを使用可能にする方法
+
+ここからは、カスタム投稿タイプで脚注ブロックを使えるようにする実際の方法を紹介します。
+
+まず要点をまとめると、以下の2つの設定が必要となります。
+
+- 投稿タイプで`editor`, `revisions`, `custom-fields`を有効化する
+- `show_in_rest`を`true`にして、ブロックエディタを有効化する
+
+これらの設定はカスタム投稿タイプを作成する方法によって異なりますので、次で4つのパターンに分けて解説します。
+
+### 1. functions.phpでカスタム投稿タイプを作成している場合
+
+まずはプラグインを使わずに、`functions.php`でカスタム投稿タイプを作成している場合です。
+
+カスタム投稿タイプを作成するコードは、以下のようになっているかと思います。
+
+<CodeHead lang="php" name="functions.php" />
+
+```php showLineNumbers {15,16,17,19}
+<?php
+
+function register_custom_post_type() {
+
+  register_post_type(
+    'news',
+    array(
+      'label' => 'お知らせ',
+      'public' => true,
+      'has_archive' => true,
+      'menu_position' => 5,
+      'supports' => array(
+        'title',
+        'thumbnail',
+        'editor',
+        'revisions',
+        'custom-fields'
+      ),
+      'show_in_rest' => true,
+    )
+  );
+}
+
+add_action('init', 'register_custom_post_type');
+```
+
+このコードの中で、`supports`に`editor`, `revisions`, `custom-fields`を追加し、`show_in_rest`を`true`に設定することで、脚注ブロックを使用できるようになります。
+
+自身のコードと照らし合わせて、もし抜けている場合は上記のコードを参考に追加してみてください。
+
+### 2. Secure Custom Fieldsでカスタム投稿タイプを作成している場合
+
+続いては、Secure Custom Fields（旧Advanced Custom Fields）を使用してカスタム投稿タイプを作成している場合です。
+
+まずは投稿タイプの編集画面を開きます。
+
+<NextImage
+  src="/images/blog/enable-footnotes-block-in-custom-post-type-wordpress/scf-post-type.png"
+  width={1000}
+  height={553}
+  hasBorder
+  alt="SCFで作成したカスタム投稿タイプ"
+/>
+
+下にスクロールし、[高度な設定]を開くと、デフォルトでは以下のようになっているかと思います。
+
+<NextImage
+  src="/images/blog/enable-footnotes-block-in-custom-post-type-wordpress/scf-settings-01.png"
+  width={1000}
+  height={577}
+  hasBorder
+  alt="SCFの高度な設定の画面"
+/>
+
+ここで、もし「エディタ」「カスタムフィールド」「リビジョン」にチェックが入っていない場合は、チェックを入れてください。
+
+デフォルトでは「リビジョン」にのみチェックが入っていないので、これにチェックを入れるだけでOKです。
+
+<Spacer />
+
+また、ブロックエディタを有効化するために、[REST API]のタブを開き、「REST APIで表示」が有効になっているかも確認してください。
+
+<NextImage
+  src="/images/blog/enable-footnotes-block-in-custom-post-type-wordpress/scf-settings-02.png"
+  width={1000}
+  height={475}
+  hasBorder
+  alt="SCFのREST APIの設定画面"
+/>
+
+これらの設定を行うことで、脚注ブロックが使用できるようになっているはずです。
+
+### 3. Advanced Custom Fields PROでカスタム投稿タイプを作成している場合
+
+こちらは上で説明したSecure Custom Fieldsと全く同じ手順で設定できるので、上の手順を参考に設定してください。
+
+### 4. Custom Post Type UIでカスタム投稿タイプを作成している場合
+
+最後に、Custom Post Type UIを使用してカスタム投稿タイプを作成している場合です。
+
+まずはCustom Post Type UIの設定画面を開き、「投稿タイプを編集」でカスタム投稿タイプを選択します。
+
+<NextImage
+  src="/images/blog/enable-footnotes-block-in-custom-post-type-wordpress/cptui-01.png"
+  width={1000}
+  height={744}
+  hasBorder
+  alt="CPTUIの投稿タイプを編集画面"
+/>
+
+下にスクロールすると「サポート」の設定が出てくるので、「エディター」「カスタムフィールド」「リビジョン」にチェックを入れて下さい。
+
+<NextImage
+  src="/images/blog/enable-footnotes-block-in-custom-post-type-wordpress/cptui-02.png"
+  width={1000}
+  height={527}
+  hasBorder
+  alt="投稿タイプのサポート設定画面"
+/>
+
+また、ブロックエディタを有効化するために、「REST APIで表示」がTrueになっているかも確認してください。
+
+<NextImage
+  src="/images/blog/enable-footnotes-block-in-custom-post-type-wordpress/cptui-03.png"
+  width={1000}
+  height={128}
+  hasBorder
+  alt="REST APIで表示の設定画面"
+/>
+
+以上で設定は完了です！
+
+これでブロックエディタ内に脚注ブロックが表示されるはずです。
+
+## まとめ：カスタム投稿タイプで脚注ブロックが使用できない原因と対処法
+
+今回の記事では、WordPressのカスタム投稿タイプで脚注ブロックが使用できない原因と対処法について解説しました。
+
+カスタム投稿タイプの作成方法はいろいろありますが、共通して必要な設定は以下の2つです。
+
+- 投稿タイプで`editor`, `revisions`, `custom-fields`を有効化する
+- `show_in_rest`を`true`にして、ブロックエディタを有効化する
+
+これらの設定を行うことで、カスタム投稿タイプでも脚注ブロックを使用できるようになります。
+
+もし「カスタム投稿タイプのブロックエディタで脚注が表示されない」という問題に遭遇した場合は、ぜひこの記事を参考にしてみてください。

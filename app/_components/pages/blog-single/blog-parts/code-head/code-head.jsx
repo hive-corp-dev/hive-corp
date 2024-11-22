@@ -10,6 +10,8 @@ import {
   IoTerminalOutline,
 } from "react-icons/io5";
 
+import { SiPhp } from "react-icons/si";
+
 export default function CodeHead({ name, lang }) {
   const outputLanguageString = (value) => {
     switch (value) {
@@ -17,6 +19,12 @@ export default function CodeHead({ name, lang }) {
         return {
           name: "HTML",
           icon: <IoLogoHtml5 />,
+        };
+      }
+      case "php": {
+        return {
+          name: "PHP",
+          icon: <SiPhp />,
         };
       }
       case "css": {
