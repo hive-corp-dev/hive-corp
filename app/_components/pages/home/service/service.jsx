@@ -71,8 +71,8 @@ export default function Service() {
               </p>
             </div>
             <div className={styles.btnWrap}>
-              <a href="https://jam-factory.tech" target="_blank" rel="noopener" className={styles.btn}>
-                Jam Factory
+              <a href="https://ec.hive-corp.jp" target="_blank" rel="noopener" className={styles.btn}>
+                ECHive
                 <RxExternalLink />
               </a>
             </div>
