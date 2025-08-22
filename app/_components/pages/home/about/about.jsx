@@ -38,6 +38,7 @@ export default function About() {
               <dd>
                 <ul>
                   <li>ホームページ制作、</li>
+                  <li>ECサイト制作、</li>
                   <li>ホームページの保守・運用、</li>
                   <li>コーディング代行、</li>
                   <li>MEO対策代行、</li>

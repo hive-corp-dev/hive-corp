@@ -54,25 +54,20 @@ export default function Service() {
             <div className={styles.head}>
               <span className={`${openSans.className} ${styles.num}`}>SERVICE 01</span>
               <span className={styles.name}>
-                Jam Factory
+                ECHive
                 <br className={styles.brsp} />
-                （ジャムファクトリー）
+                （イーシーハイブ）
               </span>
             </div>
-            <p className={styles.subTitle}>
-              サブスクリプション型
-              <br className={styles.brsp} />
-              ホームページ制作サービス
-            </p>
+            <p className={styles.subTitle}>ECサイト制作サービス</p>
             <div className={styles.thumb}>
-              <Image src="/images/works-01.png" width={840} height={464} alt="" />
+              <Image src="/images/works-03.png" width={840} height={464} alt="" />
             </div>
             <div className={styles.exp}>
               <p>
-                Jam
-                Factory（ジャムファクトリー）は、サブスクリプション型のホームページ制作サービスです。初期費用・制作費はすべて無料で、月額料金でホームページを制作し、運用までサポートいたします。お客様のビジネスに合わせたデザインを提案し、SEO対策も行い、集客につながるホームページを制作いたします。
+                ECHive（イーシーハイブ）は、本格的なネットショップを開設&運営したい方に向けた、ECサイト制作サービスです。世界中で一番利用されているECサービス「Shopify」を使用し、デザイン性に優れた高機能なオリジナルECサイトを制作します。
                 <br />
-                ビジネスを立ち上げたばかりでホームページにお金をかけられない個人・小規模事業者様や、費用を抑えつつホームページを運用したい方におすすめのサービスです。
+                制作して終わりではなく、公開後の運用サポート、SEO対策、集客支援なども行います。オリジナルテーマの開発や、アプリ開発も可能なので、幅広いニーズに合わせたECサイトを制作いたします。
               </p>
             </div>
             <div className={styles.btnWrap}>
@@ -106,6 +101,39 @@ export default function Service() {
             <div className={styles.btnWrap}>
               <a href="https://codehive.jp" target="_blank" rel="noopener" className={styles.btn}>
                 CodeHive
+                <RxExternalLink />
+              </a>
+            </div>
+          </li>
+
+          <li className={styles.item}>
+            <div className={styles.head}>
+              <span className={`${openSans.className} ${styles.num}`}>SERVICE 03</span>
+              <span className={styles.name}>
+                Jam Factory
+                <br className={styles.brsp} />
+                （ジャムファクトリー）
+              </span>
+            </div>
+            <p className={styles.subTitle}>
+              サブスクリプション型
+              <br className={styles.brsp} />
+              ホームページ制作サービス
+            </p>
+            <div className={styles.thumb}>
+              <Image src="/images/works-01.png" width={840} height={464} alt="" />
+            </div>
+            <div className={styles.exp}>
+              <p>
+                Jam
+                Factory（ジャムファクトリー）は、サブスクリプション型のホームページ制作サービスです。初期費用・制作費はすべて無料で、月額料金でホームページを制作し、運用までサポートいたします。お客様のビジネスに合わせたデザインを提案し、SEO対策も行い、集客につながるホームページを制作いたします。
+                <br />
+                ビジネスを立ち上げたばかりでホームページにお金をかけられない個人・小規模事業者様や、費用を抑えつつホームページを運用したい方におすすめのサービスです。
+              </p>
+            </div>
+            <div className={styles.btnWrap}>
+              <a href="https://jam-factory.tech" target="_blank" rel="noopener" className={styles.btn}>
+                Jam Factory
                 <RxExternalLink />
               </a>
             </div>
