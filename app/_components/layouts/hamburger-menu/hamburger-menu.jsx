@@ -6,7 +6,7 @@ import { HamburgerMenuContext } from "@/app/_context/hamburger-menu-context";
 import styles from "./hamburger-menu.module.scss";
 import Image from "next/image";
 import { openSans } from "@/app/_utils/fonts";
-import { JAM_URL, CODEHIVE_URL } from "@/app/_data/data";
+import { CODEHIVE_URL, ECHIVE_URL } from "@/app/_data/data";
 
 export default function HamburgerMenu() {
   const { hamburgerMenuIsOpen, setHamburgerMenuIsOpen } = useContext(HamburgerMenuContext);
@@ -69,12 +69,12 @@ export default function HamburgerMenu() {
               </a>
             </li>
             <li className={styles.banner}>
-              <a href={`${JAM_URL}`} target="_blank" rel="noopener" className={styles.bannerLink}>
-                <span className={styles.bannerText}>サブスク型ホームページ制作サービス</span>
+              <a href={`${ECHIVE_URL}`} target="_blank" rel="noopener" className={styles.bannerLink}>
+                <span className={styles.bannerText}>ECサイト制作サービス</span>
                 <Image
                   className={styles.bannerImg}
-                  src="/images/jam-banner.png"
-                  alt="Jam Factory"
+                  src="/images/echive-banner.png"
+                  alt="ECHive"
                   width={200}
                   height={60}
                 />
