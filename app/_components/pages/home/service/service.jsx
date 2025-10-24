@@ -7,7 +7,6 @@ import { openSans } from "@/app/_utils/fonts";
 import styles from "./service.module.scss";
 import Image from "next/image";
 import SectionTitle from "@/app/_components/common/section-title/section-title";
-import Link from "next/link";
 import { RxExternalLink } from "react-icons/rx";
 
 export default function Service() {
@@ -106,7 +105,7 @@ export default function Service() {
             </div>
           </li>
 
-          <li className={styles.item}>
+          {/* <li className={styles.item}>
             <div className={styles.head}>
               <span className={`${openSans.className} ${styles.num}`}>SERVICE 03</span>
               <span className={styles.name}>
@@ -137,7 +136,7 @@ export default function Service() {
                 <RxExternalLink />
               </a>
             </div>
-          </li>
+          </li> */}
         </ul>
       </Container>
     </section>
