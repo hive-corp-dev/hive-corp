@@ -72,7 +72,11 @@
 
     ul {
       li {
-        display: inline;
+        // display: inline;
+        &::before {
+          content: "・";
+          font: inherit;
+        }
       }
     }
   }

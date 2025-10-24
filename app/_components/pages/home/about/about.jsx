@@ -37,13 +37,10 @@ export default function About() {
               <dt>事業内容</dt>
               <dd>
                 <ul>
-                  <li>ホームページ制作、</li>
-                  <li>ECサイト制作、</li>
-                  <li>ホームページの保守・運用、</li>
-                  <li>コーディング代行、</li>
-                  <li>MEO対策代行、</li>
-                  <li>Instagram運用代行、</li>
-                  <li>LINE公式構築代行</li>
+                  <li>ホームページ・ウェブサイト制作</li>
+                  <li>ECサイト制作</li>
+                  <li>ホームページの保守・運用</li>
+                  <li>コーディング代行</li>
                 </ul>
               </dd>
             </div>
