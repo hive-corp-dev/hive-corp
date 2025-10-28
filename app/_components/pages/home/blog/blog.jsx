@@ -1,6 +1,5 @@
 import Container from "@/app/_components/common/container/container";
 import SectionTitle from "@/app/_components/common/section-title/section-title";
-import { openSans } from "@/app/_utils/fonts";
 import { postsSortedByDate } from "@/app/_utils/blog";
 
 import BlogCard from "@/app/_components/pages/blog-archive/blog-card/blog-card";
